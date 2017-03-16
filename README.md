@@ -4,6 +4,6 @@ A repository full of random code which I have written, some is just general test
 
 Do not expect that this repo will be well organised, because it won't.
 
-Feel free to use or modify this code where ever and how ever you like. Everything here is Licenced under the [MIT Licence](https://gitlab.com/axvr/codedump/blob/master/LICENCE).
+Feel free to use or modify this code where ever and how ever you like. Everything here is unlicenced and in the public domain.
 
 [Navigate to the files here](https://gitlab.com/axvr/codedump/tree/master)
