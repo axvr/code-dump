@@ -8,7 +8,7 @@
   "activationCommands": {
     "atom-workspace": "axvr-word-count:toggle"
   },
-  "repository": "https://github.com/axvr/axvr-word-count",
+  "repository": "https://github.com/axvr/codedump",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
