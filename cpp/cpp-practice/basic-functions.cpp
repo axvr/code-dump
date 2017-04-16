@@ -25,8 +25,12 @@ int addParams(int x, int y, int z)
 int main()
 {
   std::cout << "Running main()" << std::endl;
+
   std::cout << "Running function testFunc()" << std::endl;
   testFunc();
+
+  std::cout << addParams(1, 2, 3) << std::endl;
+
   std::cout << "Ending main()" << std::endl;
 
   return 0;
