@@ -16,14 +16,14 @@ fn main() {
 
     io::stdin().read_line(&mut guess)
         .expect("Failed to read line");
-    
+
     // this is a comment same as in C
     println!("You guessed {}", guess);
 
-    /* 
+    /*
      * multi line comment
      * zzzz
      */
 
-    
+
 }
