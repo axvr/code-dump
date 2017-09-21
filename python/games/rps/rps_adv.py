@@ -5,7 +5,7 @@
 import random #imports the random module.
 playAgain='y'
 while playAgain=='y' or playAgain=='Y':
-	win=0
+    win=0
     #While loop so player can be asked if they want to play again.
     print("\nScissors cuts Paper \nPaper covers Rock \nRock crushes Scissors.")
     #prints the rules of the game.
@@ -22,7 +22,7 @@ while playAgain=='y' or playAgain=='Y':
         #converts the choice to number based upon length.
         if player == computer: print("You Drew")
         elif player == 8 and computer == 4: print("You lose")
-        elif player > computer or (player == 4 and computer == 8):
+        elif (player > computer) or (player == 4 and computer == 8):
             print("You win")
             win=win+1
         else: print("You lose")

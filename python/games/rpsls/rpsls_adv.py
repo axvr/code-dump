@@ -5,7 +5,7 @@
 import random #imports random module.
 playAgain='y'
 while playAgain=='y' or playAgain=='Y':
-	win=0
+    win=0
     #While loop so player can be asked if they want to play again.
     print("\nScissors cuts Paper \nPaper covers Rock \nRock crushes Lizard \nLizard poisons Spock \nSpock smashes Scissors \nScissors decapitates Lizard \nLizard eats Paper \nPaper disproves Spock \nSpock vaporizes Rock \n(and as it always has) Rock crushes Scissors. \n")
     #prints the rules of the game.
