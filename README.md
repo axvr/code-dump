@@ -1,4 +1,4 @@
-* Code Dumpster Dive - codedump
+# Code Dumpster Dive - codedump
 
 
 A repository full of random code which I have written, some is just general testing others are actual functioning programs. Come and take a look around the "Code Dumpster", you may find something useful.
