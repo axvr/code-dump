@@ -5,7 +5,7 @@ A repository full of random code which I have written, some is just general test
 
 *Do not expect that this repo will be well organised, because it most likely won't.*
 
-Feel free to use or modify this code where ever and how ever you like (following the licences, obviously). Everything here is unlicenced and in the public domain, unless otherwise stated.
+Feel free to use or modify any of this code where ever and how ever you like (within the scope of the licence). Everything here is unlicenced and in the public domain, unless otherwise stated.
  
 ---
 
