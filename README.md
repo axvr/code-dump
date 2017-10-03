@@ -3,9 +3,9 @@
 
 A repository full of random code which I have written, some is just general testing others are actual functioning programs. Come and take a look around the "Code Dumpster", you may find something useful.
 
-Do not expect that this repo will be well organised, because it most likely won't.
+*Do not expect that this repo will be well organised, because it most likely won't.*
 
-Feel free to use or modify this code where ever and how ever you like. Everything here is unlicenced and in the public domain, unless stated otherwise.
+Feel free to use or modify this code where ever and how ever you like (following the licences, obviously). Everything here is unlicenced and in the public domain, unless otherwise stated.
  
 ---
 
