@@ -1,3 +1,6 @@
-# pypackage
+# ParamParse
 
-This is a collection of python modules for anyone to use released under the MIT Licence
+This is a simple and lightweight python parameter parser.
+
+
+Licence: BSD 3-Clause
