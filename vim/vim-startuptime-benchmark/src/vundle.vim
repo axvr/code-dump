@@ -2,9 +2,8 @@ set runtimepath^=$TEST_DIR
 
 filetype off
 
-set rtp+=$TEST_DIR/Vundle.vim
+set rtp+=$TEST_DIR/bundle/Vundle.vim
 call vundle#begin()
-let vundle#bundle_dir = expand('$TEST_DIR/bundle')
 
 " My plugins
 Plugin 'junegunn/vim-easy-align'

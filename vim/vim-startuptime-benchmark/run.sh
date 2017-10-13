@@ -58,20 +58,22 @@ if [[ "$1" = 'init' || ! -d "$TEST_DIR" ]]; then
     vim -Nu src/plug.vim +PlugInstall +qa
 
     # Install plugins in pack/package directory
-    vim -Nu src/vivid.vim +PluginInstall +qa
+    #vim -Nu src/vivid.vim +PluginInstall +qa
+    ln -sf ${TEST_DIR}/bundle ${TEST_DIR}/pack/package/opt
 
     # Dein installs plugins in different directory structure.
     # Manually install plugins with :call dein#install() and quit
-    ln -sf src/dein.vim plugins.vim
+    ln -sf src/dein.vim vimrc
+    vim -Nu vimrc +'echo ":call dein#install()"'
+    ln -sf src/dein-all.vim vimrc
     vim -Nu vimrc +'echo ":call dein#install()"'
 
-    ln -sf src/dein-all.vim plugins.vim
-    vim -Nu vimrc +'echo ":call dein#install()"'
+    # Vim built in package configuration (avoid problems with Vivid and minpac)
+    rm -rf ${TEST_DIR}/package/
+    mkdir -p ${TEST_DIR}/package/pack/package/start
+    ln -sf ${TEST_DIR}/bundle ${TEST_DIR}/package/pack/package/start
 
-    rm -rf $TEST_DIR/pack/foo
-    mkdir -p $TEST_DIR/pack/foo/start
-    ln -sf $TEST_DIR/bundle $TEST_DIR/pack/foo/start
-    exit 0
+    exit
 fi
 
 niter=100
@@ -82,11 +84,6 @@ touch startuptime.report
 measure() {
     local vpm=$1
     ln -sf src/$vpm.vim vimrc
-    # TODO replace
-    if [[ $vpm = "vivid" ]] || [[ $vpm = "vivid-all" ]]
-    then
-        rm -rf $TEST_DIR/pack/foo
-    fi
     for n in $(seq 1 $niter); do
         echo -ne "\r$vpm #$n"
         vim -Nu vimrc --startuptime _.log +q
@@ -116,6 +113,6 @@ set -eu
 cd result
 gnuplot result.gnuplot
 #qlmanage -t -s 1000 -o . result.svg
-mv result.svg.png result.png
+#mv result.svg.png result.png
 
 # vim: set ts=8 sw=4 tw=0 et ft=sh fdm=marker fmr={{{,}}} :

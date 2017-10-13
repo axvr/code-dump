@@ -78,4 +78,3 @@ call vivid#add('chrisbra/unicode.vim')
 " Lint
 call vivid#add('scrooloose/syntastic')
 
-" plug#end() does `filetype plugin indent on` and `syntax enable`

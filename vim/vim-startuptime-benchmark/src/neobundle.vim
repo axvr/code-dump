@@ -2,7 +2,7 @@ set runtimepath^=$TEST_DIR
 
 if has('vim_starting')
   " Required:
-  set runtimepath+=$TEST_DIR/neobundle.vim/
+  set runtimepath+=$TEST_DIR/bundle/neobundle.vim/
 endif
 
 " Required:
