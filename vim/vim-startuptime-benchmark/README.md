@@ -17,7 +17,8 @@ This is a modified version of [Junegunn](https://github.com/junegunn)'s [vim-sta
 | **Vim Version**  | VIM - Vi IMproved 8.0 (2016 Sep 12, compiled Oct 6 2017 14:58:03) |
 
 ![Results for 2017-10-13](graphs/2017-10-13.jpg)
-
+ 
+---
 
 ### Date: 2016-12-06
 
