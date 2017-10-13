@@ -12,19 +12,19 @@ if [[ "$1" = 'init' || ! -d "$TEST_DIR" ]]; then
     curl -LSso ${TEST_DIR}/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
     # Vivid
-    if [ ! -d ${TEST_DIR}/pack/vivid/opt/Vivid.vim ]; then
+    if [ ! -d ${TEST_DIR}/pack/package/opt/Vivid.vim ]; then
         git clone https://github.com/axvr/Vivid.vim.git \
-            ${TEST_DIR}/pack/vivid/opt/Vivid.vim
+            ${TEST_DIR}/pack/package/opt/Vivid.vim
     else
-        (cd ${TEST_DIR}/pack/vivid/opt/Vivid.vim && git pull)
+        (cd ${TEST_DIR}/pack/package/opt/Vivid.vim && git pull)
     fi
 
     # Minpac
-    if [ ! -d ${TEST_DIR}/pack/minpac/opt/minpac ]; then
+    if [ ! -d ${TEST_DIR}/pack/package/opt/minpac ]; then
         git clone https://github.com/k-takata/minpac.git \
-            ${TEST_DIR}/pack/minpac/opt/minpac
+            ${TEST_DIR}/pack/package/opt/minpac
     else
-        (cd ${TEST_DIR}/pack/minpac/opt/minpac && git pull)
+        (cd ${TEST_DIR}/pack/package/opt/minpac && git pull)
     fi
 
     # vim-plug
@@ -57,6 +57,9 @@ if [[ "$1" = 'init' || ! -d "$TEST_DIR" ]]; then
     # Install plugins in bundle directory
     vim -Nu src/plug.vim +PlugInstall +qa
 
+    # Install plugins in pack/package directory
+    vim -Nu src/vivid.vim +PluginInstall +qa
+
     # Dein installs plugins in different directory structure.
     # Manually install plugins with :call dein#install() and quit
     ln -sf src/dein.vim plugins.vim
@@ -67,7 +70,6 @@ if [[ "$1" = 'init' || ! -d "$TEST_DIR" ]]; then
 
     rm -rf $TEST_DIR/pack/foo
     mkdir -p $TEST_DIR/pack/foo/start
-    #ln -sf $TEST_DIR/bundle $TEST_DIR/pack/vivid/opt
     ln -sf $TEST_DIR/bundle $TEST_DIR/pack/foo/start
     exit 0
 fi
@@ -79,7 +81,8 @@ touch startuptime.report
 
 measure() {
     local vpm=$1
-    ln -sf src/$vpm.vim plugins.vim
+    ln -sf src/$vpm.vim vimrc
+    # TODO replace
     if [[ $vpm = "vivid" ]] || [[ $vpm = "vivid-all" ]]
     then
         rm -rf $TEST_DIR/pack/foo
@@ -97,7 +100,7 @@ measure() {
 idx=0
 out=result/result.dat
 rm "$out"
-for vpm in vanilla package pathogen vivid vundle neobundle plug dein; do
+for vpm in vanilla package pathogen minpac vivid vundle neobundle plug dein; do
     echo -n "\"$vpm\" $idx" >> "$out"
     if [[ $vpm = neobundle ]] || [[ $vpm = plug ]] || [[ $vpm = dein ]] || [[ $vpm = vivid ]]; then
         measure $vpm-all

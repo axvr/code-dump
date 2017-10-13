@@ -1,3 +1,0 @@
-
-execute 'source '.expand('<sfile>:h').'/plugins.vim'
-
