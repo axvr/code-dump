@@ -3,7 +3,7 @@ reset
 
 set size square
 
-set term svg size 500,500 font "Monospace,11" solid
+set term svg size 700,500 font "Monaco,11" solid
 set output "result.svg"
 
 set style data histogram

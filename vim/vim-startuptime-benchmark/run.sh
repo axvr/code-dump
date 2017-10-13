@@ -99,7 +99,8 @@ out=result/result.dat
 rm "$out"
 for vpm in vanilla package pathogen minpac vivid vundle neobundle plug dein; do
     echo -n "\"$vpm\" $idx" >> "$out"
-    if [[ $vpm = neobundle ]] || [[ $vpm = plug ]] || [[ $vpm = dein ]] || [[ $vpm = vivid ]]; then
+    if [[ $vpm = neobundle ]] || [[ $vpm = plug ]] || [[ $vpm = dein ]] || \
+        [[ $vpm = vivid ]] || [[ $vpm = minpac ]]; then
         measure $vpm-all
     fi
     measure $vpm
