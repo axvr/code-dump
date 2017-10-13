@@ -7,31 +7,44 @@ export TEST_DIR=/tmp/vim-startuptime-benchmark
 mkdir -p ${TEST_DIR}/{autoload,bundle,pack}
 
 if [[ "$1" = 'init' || ! -d "$TEST_DIR" ]]; then
+
     # Pathogen
-    curl -LSso $TEST_DIR/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+    curl -LSso ${TEST_DIR}/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
     # Vivid
     if [ ! -d ${TEST_DIR}/pack/vivid/opt/Vivid.vim ]; then
-        git clone https://github.com/axvr/Vivid.vim ${TEST_DIR}/pack/vivid/opt/Vivid.vim
+        git clone https://github.com/axvr/Vivid.vim.git \
+            ${TEST_DIR}/pack/vivid/opt/Vivid.vim
     else
         (cd ${TEST_DIR}/pack/vivid/opt/Vivid.vim && git pull)
     fi
 
+    # Minpac
+    if [ ! -d ${TEST_DIR}/pack/minpac/opt/minpac ]; then
+        git clone https://github.com/k-takata/minpac.git \
+            ${TEST_DIR}/pack/minpac/opt/minpac
+    else
+        (cd ${TEST_DIR}/pack/minpac/opt/minpac && git pull)
+    fi
+
     # vim-plug
-    curl -fLo ${TEST_DIR}/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim
+    curl -fLo ${TEST_DIR}/autoload/plug.vim \
+        https://raw.github.com/junegunn/vim-plug/master/plug.vim
 
     # Vundle
     if [ ! -d ${TEST_DIR}/bundle/Vundle.vim ]; then
-        git clone https://github.com/gmarik/Vundle.vim.git ${TEST_DIR}/Vundle.vim
+        git clone https://github.com/gmarik/Vundle.vim.git \
+            ${TEST_DIR}/bundle/Vundle.vim
     else
-        (cd ${TEST_DIR}/Vundle.vim && git pull)
+        (cd ${TEST_DIR}/bundle/Vundle.vim && git pull)
     fi
 
     # NeoBundle
     if [ ! -d ${TEST_DIR}/bundle/neobundle.vim ]; then
-        git clone https://github.com/Shougo/neobundle.vim ${TEST_DIR}/neobundle.vim
+        git clone https://github.com/Shougo/neobundle.vim \
+            ${TEST_DIR}/bundle/neobundle.vim
     else
-        (cd ${TEST_DIR}/neobundle.vim && git pull)
+        (cd ${TEST_DIR}/bundle/neobundle.vim && git pull)
     fi
 
     # dein.vim

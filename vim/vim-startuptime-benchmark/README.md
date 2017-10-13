@@ -4,7 +4,7 @@ A benchmark result of Vim startup time with different plugin managers.
 
 This is a modified version of [Junegunn](https://github.com/junegunn)'s [vim-startuptime-benchmark](https://github.com/junegunn/vim-startuptime-benchmark)
 
-## Result
+## Results
 
 ### Date: 2017-10-13
 
