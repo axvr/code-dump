@@ -21,7 +21,7 @@ Feel free to use or modify any of this code where ever and how ever you like (wi
 
 ### Programming tutorial files (notes and code)
 
-* **[LearnCPP.com]** - My process of learning C++ using the [learncpp.com](https://learncpp.com) website
+* **[LearnCPP.com]** - My process of learning C++ using the [learncpp.com](http://learncpp.com) website
 
 
 
