@@ -12,6 +12,8 @@ Feel free to use or modify any of this code where ever and how ever you like (wi
 ### Some of the full programs
 
 * **[ParamParse]** - A simple and lightweight Python parameter parsing module.
+* **[Vim-startuptime-benchmark]** - A program to analyse the start-up-times of different plugin managers for the [Vim text editor](http://vim.org)
 * and others
 
 [ParamParse]:https://github.com/axvr/codedump/tree/master/python/paramparse
+[Vim-startuptime-benchmark]:https://github.com/axvr/codedump/tree/master/vim/vim-startuptime-benchmark
