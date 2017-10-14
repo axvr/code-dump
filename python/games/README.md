@@ -1,6 +1,6 @@
 # Light Python Games - lightpygames
 
-**This was originally (December 2015) released under the GPLv2 but I have now changed it to be unlicenced**
+**This was originally (December 2015) released under the GNU GPLv2 but I have since changed it to the Unlicence**
 
 This repository contains simple, and extremely lightweight python games I have written. It also contains the most lightweight version of Rock, Paper, Scissors (and the Lizard, Spock version) ever made in python. All the games currently have both a working Python 2.7 and Python 3.4 versions of the code.
 
