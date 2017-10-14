@@ -1,9 +1,9 @@
-"vanilla" 0 18
-"package" 1 15
-"pathogen" 2 251
-"minpac" 3 26 26
-"vivid" 4 291 26
-"vundle" 5 81
-"neobundle" 6 332 176
-"plug" 7 267 112
-"dein" 8 266 132
+"vanilla" 0 17
+"package" 1 17
+"pathogen" 2 335
+"minpac" 3 32 24
+"vivid" 4 367 28
+"vundle" 5 86
+"neobundle" 6 347 179
+"plug" 7 284 98
+"dein" 8 281 133
