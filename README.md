@@ -20,7 +20,6 @@ Feel free to use or modify any of this code where ever and how ever you like (wi
 
 
 
-[ParamParse]:https://github.com/axvr/codedump/tree/master/python/paramparse
-[Vim-startuptime-benchmark]:https://github.com/axvr/codedump/tree/master/vim/vim-startuptime-benchmark
-[Light Python Games]:https://github.com/axvr/codedump/tree/master/python/games
-[LearnCPP.com]:https://github.com/axvr/codedump/tree/master/cpp/cpp-practice/learncpp.com
+[ParamParse]:https://github.com/axvr/codedump/tree/master/Python/paramparse
+[Vim-startuptime-benchmark]:https://github.com/axvr/codedump/tree/master/Vim Script/vim-startuptime-benchmark
+[Light Python Games]:https://github.com/axvr/codedump/tree/master/Python/games
