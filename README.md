@@ -19,11 +19,6 @@ Feel free to use or modify any of this code where ever and how ever you like (wi
 * and others (browse around the repository for these)
 
 
-### Programming tutorial files (notes and code)
-
-* **[LearnCPP.com]** - My process of learning C++ using the [learncpp.com](http://learncpp.com) website
-
-
 
 [ParamParse]:https://github.com/axvr/codedump/tree/master/python/paramparse
 [Vim-startuptime-benchmark]:https://github.com/axvr/codedump/tree/master/vim/vim-startuptime-benchmark
