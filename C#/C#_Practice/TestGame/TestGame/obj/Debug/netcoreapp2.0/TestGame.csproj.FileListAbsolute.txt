@@ -1,10 +1,20 @@
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\CSharpLearning\CSharpLearning\bin\Debug\netcoreapp2.0\TestGame.deps.json
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\CSharpLearning\CSharpLearning\bin\Debug\netcoreapp2.0\TestGame.runtimeconfig.json
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\CSharpLearning\CSharpLearning\bin\Debug\netcoreapp2.0\TestGame.runtimeconfig.dev.json
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\CSharpLearning\CSharpLearning\bin\Debug\netcoreapp2.0\TestGame.dll
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\CSharpLearning\CSharpLearning\bin\Debug\netcoreapp2.0\TestGame.pdb
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\CSharpLearning\CSharpLearning\obj\Debug\netcoreapp2.0\TestGame.csproj.CoreCompileInputs.cache
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\CSharpLearning\CSharpLearning\obj\Debug\netcoreapp2.0\TestGame.AssemblyInfoInputs.cache
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\CSharpLearning\CSharpLearning\obj\Debug\netcoreapp2.0\TestGame.AssemblyInfo.cs
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\CSharpLearning\CSharpLearning\obj\Debug\netcoreapp2.0\TestGame.dll
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\CSharpLearning\CSharpLearning\obj\Debug\netcoreapp2.0\TestGame.pdb
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/CSharpLearning/CSharpLearning/bin/Debug/netcoreapp2.0/TestGame.deps.json
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/CSharpLearning/CSharpLearning/bin/Debug/netcoreapp2.0/TestGame.runtimeconfig.json
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/CSharpLearning/CSharpLearning/bin/Debug/netcoreapp2.0/TestGame.runtimeconfig.dev.json
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/CSharpLearning/CSharpLearning/bin/Debug/netcoreapp2.0/TestGame.dll
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/CSharpLearning/CSharpLearning/bin/Debug/netcoreapp2.0/TestGame.pdb
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/CSharpLearning/CSharpLearning/obj/Debug/netcoreapp2.0/TestGame.csproj.CoreCompileInputs.cache
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/CSharpLearning/CSharpLearning/obj/Debug/netcoreapp2.0/TestGame.AssemblyInfoInputs.cache
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/CSharpLearning/CSharpLearning/obj/Debug/netcoreapp2.0/TestGame.AssemblyInfo.cs
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/CSharpLearning/CSharpLearning/obj/Debug/netcoreapp2.0/TestGame.dll
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/CSharpLearning/CSharpLearning/obj/Debug/netcoreapp2.0/TestGame.pdb
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/TestGame/TestGame/bin/Debug/netcoreapp2.0/TestGame.deps.json
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/TestGame/TestGame/bin/Debug/netcoreapp2.0/TestGame.runtimeconfig.json
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/TestGame/TestGame/bin/Debug/netcoreapp2.0/TestGame.runtimeconfig.dev.json
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/TestGame/TestGame/bin/Debug/netcoreapp2.0/TestGame.dll
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/TestGame/TestGame/bin/Debug/netcoreapp2.0/TestGame.pdb
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/TestGame/TestGame/obj/Debug/netcoreapp2.0/TestGame.csproj.CoreCompileInputs.cache
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/TestGame/TestGame/obj/Debug/netcoreapp2.0/TestGame.AssemblyInfoInputs.cache
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/TestGame/TestGame/obj/Debug/netcoreapp2.0/TestGame.AssemblyInfo.cs
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/TestGame/TestGame/obj/Debug/netcoreapp2.0/TestGame.dll
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/TestGame/TestGame/obj/Debug/netcoreapp2.0/TestGame.pdb

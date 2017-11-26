@@ -1,11 +1,22 @@
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\Pong\Pong\bin\Debug\netcoreapp2.0\Pong.deps.json
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\Pong\Pong\bin\Debug\netcoreapp2.0\Pong.runtimeconfig.json
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\Pong\Pong\bin\Debug\netcoreapp2.0\Pong.runtimeconfig.dev.json
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\Pong\Pong\bin\Debug\netcoreapp2.0\Pong.dll
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\Pong\Pong\bin\Debug\netcoreapp2.0\Pong.pdb
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\Pong\Pong\obj\Debug\netcoreapp2.0\Pong.csprojResolveAssemblyReference.cache
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\Pong\Pong\obj\Debug\netcoreapp2.0\Pong.csproj.CoreCompileInputs.cache
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\Pong\Pong\obj\Debug\netcoreapp2.0\Pong.AssemblyInfoInputs.cache
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\Pong\Pong\obj\Debug\netcoreapp2.0\Pong.AssemblyInfo.cs
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\Pong\Pong\obj\Debug\netcoreapp2.0\Pong.dll
-\\bdfile1\Users$\alex.vear\Documents\Visual Studio 2017\Projects\Pong\Pong\obj\Debug\netcoreapp2.0\Pong.pdb
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/Pong/Pong/bin/Debug/netcoreapp2.0/Pong.deps.json
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/Pong/Pong/bin/Debug/netcoreapp2.0/Pong.runtimeconfig.json
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/Pong/Pong/bin/Debug/netcoreapp2.0/Pong.runtimeconfig.dev.json
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/Pong/Pong/bin/Debug/netcoreapp2.0/Pong.dll
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/Pong/Pong/bin/Debug/netcoreapp2.0/Pong.pdb
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/Pong/Pong/obj/Debug/netcoreapp2.0/Pong.csprojResolveAssemblyReference.cache
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/Pong/Pong/obj/Debug/netcoreapp2.0/Pong.csproj.CoreCompileInputs.cache
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/Pong/Pong/obj/Debug/netcoreapp2.0/Pong.AssemblyInfoInputs.cache
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/Pong/Pong/obj/Debug/netcoreapp2.0/Pong.AssemblyInfo.cs
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/Pong/Pong/obj/Debug/netcoreapp2.0/Pong.dll
+//bdfile1/Users$/alex.vear/Documents/Visual Studio 2017/Projects/Pong/Pong/obj/Debug/netcoreapp2.0/Pong.pdb
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Pong/Pong/obj/Debug/netcoreapp2.0/Pong.csprojResolveAssemblyReference.cache
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Pong/Pong/obj/Debug/netcoreapp2.0/Pong.csproj.CoreCompileInputs.cache
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Pong/Pong/obj/Debug/netcoreapp2.0/Pong.AssemblyInfoInputs.cache
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Pong/Pong/obj/Debug/netcoreapp2.0/Pong.AssemblyInfo.cs
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Pong/Pong/obj/Debug/netcoreapp2.0/Pong.dll
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Pong/Pong/obj/Debug/netcoreapp2.0/Pong.pdb
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Pong/Pong/bin/Debug/netcoreapp2.0/Pong.deps.json
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Pong/Pong/bin/Debug/netcoreapp2.0/Pong.runtimeconfig.json
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Pong/Pong/bin/Debug/netcoreapp2.0/Pong.runtimeconfig.dev.json
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Pong/Pong/bin/Debug/netcoreapp2.0/Pong.dll
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Pong/Pong/bin/Debug/netcoreapp2.0/Pong.pdb

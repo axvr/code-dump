@@ -37,16 +37,16 @@ namespace Pong
             }
         }
 
-        private char[,] CalculateShape()
-        {
-            for (int i = startPosition[0]; i < startPosition[0] + Width; i++)
-            {
-                for (int j = startPosition[0]; j < startPosition[0] + Width; j++)
-                {
-                    entity[i, j] = '#';
-                }
-            }
-        }
+        //private char[,] CalculateShape()
+        //{
+        //    for (int i = startPosition[0]; i < startPosition[0] + Width; i++)
+        //    {
+        //        for (int j = startPosition[0]; j < startPosition[0] + Width; j++)
+        //        {
+        //            entity[i, j] = '#';
+        //        }
+        //    }
+        //}
 
         private int[] startPosition;
         private char[,] entity;
