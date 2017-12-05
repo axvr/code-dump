@@ -8,3 +8,13 @@
 /home/axvr/Documents/Projects/codedump/C#/Test/obj/Debug/netcoreapp2.0/Test.AssemblyInfo.cs
 /home/axvr/Documents/Projects/codedump/C#/Test/obj/Debug/netcoreapp2.0/Test.dll
 /home/axvr/Documents/Projects/codedump/C#/Test/obj/Debug/netcoreapp2.0/Test.pdb
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Test/Test/bin/Debug/netcoreapp2.0/Test.deps.json
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Test/Test/bin/Debug/netcoreapp2.0/Test.runtimeconfig.json
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Test/Test/bin/Debug/netcoreapp2.0/Test.runtimeconfig.dev.json
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Test/Test/bin/Debug/netcoreapp2.0/Test.dll
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Test/Test/bin/Debug/netcoreapp2.0/Test.pdb
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Test/Test/obj/Debug/netcoreapp2.0/Test.csproj.CoreCompileInputs.cache
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Test/Test/obj/Debug/netcoreapp2.0/Test.AssemblyInfoInputs.cache
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Test/Test/obj/Debug/netcoreapp2.0/Test.AssemblyInfo.cs
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Test/Test/obj/Debug/netcoreapp2.0/Test.dll
+/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Test/Test/obj/Debug/netcoreapp2.0/Test.pdb

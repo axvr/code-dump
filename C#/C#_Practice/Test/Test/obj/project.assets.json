@@ -12538,11 +12538,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/axvr/Documents/Projects/codedump/C#/Test/Test.csproj",
+      "projectUniqueName": "/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Test/Test/Test.csproj",
       "projectName": "Test",
-      "projectPath": "/home/axvr/Documents/Projects/codedump/C#/Test/Test.csproj",
+      "projectPath": "/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Test/Test/Test.csproj",
       "packagesPath": "/home/axvr/.nuget/packages/",
-      "outputPath": "/home/axvr/Documents/Projects/codedump/C#/Test/obj/",
+      "outputPath": "/home/axvr/Documents/Projects/codedump/C#/C#_Practice/Test/Test/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/axvr/.nuget/NuGet/NuGet.Config"
