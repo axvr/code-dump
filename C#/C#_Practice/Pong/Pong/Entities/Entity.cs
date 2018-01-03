@@ -11,6 +11,7 @@ namespace Pong
                 int Height = (int)((Console.BufferHeight / 100) * percentHeight);
                 int Width  = (int)((Console.BufferWidth  / 100) * percentWidth);
             }
+            
         }
         public Entity(int blockHeight, int blockWidth)
         {

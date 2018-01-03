@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pong.Events;
+using System;
 using System.Threading.Tasks;
 
 namespace Pong
@@ -16,6 +17,8 @@ namespace Pong
             Court Level1 = new Court();
             Paddle Player1 = new Paddle(percentHeight: 10, percentWidth: 2);
             Ball Ball1 = new Ball(percentSquareDimention: 2);
+
+            //Level1.CourtRefresh += new CourtRefresh(Player1.Echo);
 
             if (keyIntercept.KeyChar != 'q')
             {

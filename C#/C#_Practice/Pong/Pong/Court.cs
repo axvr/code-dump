@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pong.Events;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pong
 {
+
     class Court
     {
 
@@ -36,6 +38,17 @@ namespace Pong
 
                 while (pause)
                 {
+                    try
+                    {
+                        CourtRefreshEventArgs args = new CourtRefreshEventArgs();
+                        CourtRefresh(this, args);
+                    }
+                    catch (NullReferenceException nullException)
+                    {
+                        // Temporary (to stop .NET Core warnings)
+                        Console.WriteLine(nullException.Message);
+                    }
+                 
                     int rowLength = Grid.GetLength(0);
                     int colLength = Grid.GetLength(1);
 
@@ -100,6 +113,7 @@ namespace Pong
             return temporaryCourt;
         }
 
+        public event CourtRefresh CourtRefresh;
 
         private char[,] Grid;
         private char[,] View;

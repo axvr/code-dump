@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Pong.Events;
 
 namespace Pong
 {
@@ -20,6 +21,11 @@ namespace Pong
         public void MoveDown()
         {
 
+        }
+
+        public void Echo(object sender, CourtRefreshEventArgs args)
+        {
+            Console.WriteLine("Hello World");
         }
 
 

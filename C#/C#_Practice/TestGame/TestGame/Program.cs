@@ -1,12 +1,10 @@
 ﻿using System;
 
-/// <summary>
-/// The Not Quite a Game Yet, Game.
-/// -------------------------------
-/// 
-/// This is just C# & OOP Practice
-/// (it will never be finished).
-/// </summary>
+// The Not Quite a Game Yet, Game.
+// -------------------------------
+// 
+// This is just C# & OOP Practice
+// (it will never be finished).
 namespace TestGame
 {
 
@@ -25,15 +23,13 @@ namespace TestGame
         {
 
             Map firstMap = new Map();
-            Player player1 = new Player(
-                    StartPosition: new int[] { 6, 6, },
-                    Piece: '@',
-                    CurrentMap: firstMap);
+            Player player1 = new Player(StartPosition: new int[] { 6, 6, },
+                                        Piece: '@',
+                                        CurrentMap: firstMap);
 
-            Player computer1 = new Player(
-                    StartPosition: new int[] { 3, 2, },
-                    Piece: '*',
-                    CurrentMap: firstMap);
+            Player computer1 = new Player(StartPosition: new int[] { 3, 2, },
+                                        Piece: '*',
+                                        CurrentMap: firstMap);
 
             firstMap.CreatePiece(Where: new int[] { 3, 6 }, Piece: '#');
 
