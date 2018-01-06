@@ -6,6 +6,21 @@ This is a modified version of [Junegunn](https://github.com/junegunn)'s [vim-sta
 
 ## Results
 
+### Date: 2018-XX-XX
+
+|                      | Device Information                                                |
+|----------------------|-------------------------------------------------------------------|
+| **Device**           | Dell Latitude D630                                                |
+| **Processor**        | Intel Core2 Duo CPU T7250 @ 2.00GHz x 2                           |
+| **Memory**           | 3.8 GiB                                                           |
+| **Operating System** | Fedora Linux 26                                                   |
+| **Architecture**     | 64-bit                                                            |
+| **Vim Version**      | VIM - Vi IMproved 8.0 (2016 Sep 12, compiled Oct 6 2017 14:58:03) |
+
+![Results for 2018-XX-XX](graphs/2018-XX-XX.jpg)
+ 
+---
+
 ### Date: 2017-10-13
 
 |                      | Device Information                                                |
