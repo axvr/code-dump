@@ -1,4 +1,4 @@
-# Code Dumpster Dive - codedump
+# Code Dump
 
 
 A repository full of random code which I have written, some is just general
@@ -22,12 +22,27 @@ public domain, unless otherwise stated.
   This is functional as is, but there was a planned second method of parsing
 * **[Vim-startuptime-benchmark]** - A program to analyse the start-up-times of
   different plugin managers for the [Vim text editor](http://vim.org)
+* **[Vivid-Legacy.vim]** - The code from before the
+  [rewrite](https://github.com/axvr/Vivid.vim). This version was a fork of
+  Vundle.vim
 * **[Light Python Games]** - Collection of simple games in python, that I wrote
   when starting to learn programming in late 2015
 * and others (browse around the repository for these)
 
 
+### Some incomplete programs
 
+* **[ALIS]** - [Arch Linux] Installation Script. Was going to be renamed to
+  Archaic - The Arch Linux Installer, but I abandoned the project in late 2017
+  to focus on other tasks. ALIS had reached in insane level of code complexity,
+  that a second rewite was required to keep it maintainable (I was very new to
+  programming at the time). A full explanation is in the Project's
+  [`README.md`](https://github.com/axvr/ALIS/blob/master/README.md).
+
+
+[Vivid-Legacy.vim]:https://github.com/axvr/Vivid-Legacy.vim
+[ALIS]:https://github.com/axvr/ALIS
 [ParamParse]:https://github.com/axvr/codedump/tree/master/Python/paramparse
 [Light Python Games]:https://github.com/axvr/codedump/tree/master/Python/games
 [Vim-startuptime-benchmark]:https://github.com/axvr/codedump/tree/master/Vim/vim-startuptime-benchmark
+[Arch Linux]:https://archlinux.org

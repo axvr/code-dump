@@ -42,7 +42,7 @@ This is a modified version of [Junegunn](https://github.com/junegunn)'s [vim-sta
 |----------------------|-------------------------------------------------------------------|
 | **Device**           | MacBook Pro (Retina 13-inch, early 2015)                          |
 | **Processor**        | Intel® Core™ i5 CPU @ 2.9GHz                                      |
-| **Memory**           | Unknown (8GiB or 16GiB)                                           |
+| **Memory**           | Unknown (8GB or 16GB)                                             |
 | **Operating System** | macOS Sierra                                                      |
 | **Architecture**     | 64-bit                                                            |
 | **Vim Version**      | VIM - Vi IMproved 8.0 (2016 Sep 12, compiled Dec 3 2016 21:46:33) |

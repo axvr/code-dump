@@ -1,4 +1,4 @@
-set packpath+=$TEST_DIR
+set packpath=$TEST_DIR
 
 packadd minpac
 call minpac#init()

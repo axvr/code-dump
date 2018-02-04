@@ -1,1 +1,1 @@
-set packpath+=$TEST_DIR/package
+set packpath=$TEST_DIR/package
