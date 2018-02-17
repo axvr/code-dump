@@ -33,13 +33,13 @@ public domain, unless otherwise stated.
 ### Some incomplete/depreciated programs
 
 * **[ALIS]** - [Arch Linux] Installation Script. Was going to be renamed to
-  Archaic - The [Arch Linux] Installer, but I abandoned the project in late 2017
-  to focus on other tasks. ALIS had reached in insane level of code complexity,
-  that a second rewite was required to keep it maintainable (I was very new to
-  programming at the time). A full explanation is in the Project's
-  [`README.md`](https://github.com/axvr/ALIS/blob/master/README.md).
-* **[http-req]** - PowerShell script/wrapper to easily and quickly invoke HTTP requests
-  using the `Invoke-WebRequest` PowerShell command.
+  Archaic - The Primitive [Arch Linux] Installer, but I abandoned the project in
+  late 2017 to focus on other tasks. ALIS had reached in insane level of code
+  complexity, that a second rewrite was required to keep it maintainable (I was
+  very new to programming at the time). A full explanation can be found in the
+  Project's [`README.md`](https://github.com/axvr/ALIS/blob/master/README.md).
+* **[http-req]** - PowerShell script/wrapper to easily and quickly invoke HTTP
+  requests using the `Invoke-WebRequest` PowerShell command.
 
 
 [Vivid-Legacy.vim]:https://github.com/axvr/Vivid-Legacy.vim
