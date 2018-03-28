@@ -20,11 +20,14 @@ public domain, unless otherwise stated.
   [Vundle.vim](https://github.com/VundleVim/Vundle.vim).
 * **[Vim-startuptime-benchmark]** - A program to analyse the start-up-times of
   different plugin managers for the [Vim text editor](http://www.vim.org).
-* **[ParamParse]** - A simple and lightweight Python parameter parsing module.
-  This is functional as is, but there was a planned second method of parsing.
+* **[Local-NuPkg]** - A small shell script to simplify the task of installing
+  downloaded [NuGet](https://nuget.org) packages for .NET Core without having to
+  use/set-up a feed.
 * **[GNOME Theme Switcher]** - A simple bash script to allow modifying a large
   number of GNOME settings at once, esentially creating "complete themes". For
   more info [see here](https://www.reddit.com/r/unixporn/comments/73l9qg/gnome_script_to_switch_gnome_themes/).
+* **[ParamParse]** - A simple and lightweight Python parameter parsing module.
+  This is functional as is, but there was a planned second method of parsing.
 * **[Light Python Games]** - Collection of simple games in python, that I wrote
   when starting to learn programming in late 2015.
 * And others (browse around the repository for these).
@@ -49,4 +52,5 @@ public domain, unless otherwise stated.
 [Vim-startuptime-benchmark]:https://github.com/axvr/codedump/tree/master/Vim/vim-startuptime-benchmark
 [http-req]:https://github.com/axvr/codedump/blob/master/PowerShell/http-req.ps1
 [GNOME Theme Switcher]:https://github.com/axvr/dotfiles/blob/master/manage/gnome-theme.sh
+[Local-NuPkg]:https://github.com/axvr/codedump/blob/master/Shell/local-nupkg.sh
 [Arch Linux]:https://archlinux.org
