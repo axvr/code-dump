@@ -123,4 +123,4 @@ switch ($operation) {
     default     { Print-Info Info.Help }
 }
 
-# vim: set ts=8 sw=4 tw=0 et ft=ps1 fdm=marker fmr={{{,}}} :
+# vim: set et ts=8 sts=4 sw=4 tw=0 ft=ps1 ff=unix fenc=utf-8 :
