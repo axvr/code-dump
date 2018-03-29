@@ -21,8 +21,9 @@ public domain, unless otherwise stated.
 * **[Vim-startuptime-benchmark]** - A program to analyse the start-up-times of
   different plugin managers for the [Vim text editor](http://www.vim.org).
 * **[Local-NuPkg]** - A small shell script to simplify the process of installing
-  downloaded [NuGet](https://nuget.org) packages for .NET Core, without having
-  to use/configure a feed. This is a feature missing from the `dotnet-cli`.
+  downloaded [NuGet](https://www.nuget.org) packages for .NET Core, without
+  having to use/configure a feed. This is a feature missing from the
+  [`dotnet-cli`](https://github.com/dotnet/cli).
 * **[GNOME Theme Switcher]** - A simple bash script to allow modifying a large
   number of GNOME settings at once, esentially creating "complete themes". For
   more info [see here](https://www.reddit.com/r/unixporn/comments/73l9qg/gnome_script_to_switch_gnome_themes/).

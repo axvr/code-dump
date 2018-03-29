@@ -5,7 +5,7 @@
 
 # Print usage information
 usage() {
-    echo "usage: local-nupkg [-p package] [-v version] [-n name] [-u]"
+    printf "usage: local-nupkg [-p package] [-v version] [-n name] [-u]\n"
     exit 1
 }
 
@@ -41,7 +41,7 @@ fi
 
 if [ ! -f "$PACKAGE" ]
 then
-    echo "Error: Package: \"${PACKAGE}\" does not exist"
+    printf "Error: Package: \"${PACKAGE}\" does not exist\n"
     exit 1
 fi
 
@@ -50,7 +50,7 @@ NUGET_PATH="${HOME}/.nuget/packages/${PACKAGE_NAME}/${VERSION}"
 
 mkdir -p "$NUGET_PATH"
 mv "$PACKAGE" "$NUGET_PATH"
-echo "Installed to: ${NUGET_PATH}"
+printf "Installed to: ${NUGET_PATH}\n"
 
 exit 0
 
