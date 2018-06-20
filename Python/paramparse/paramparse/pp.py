@@ -6,7 +6,7 @@ paramparse (pp)
 
 This is a simple python paramter parser module (paramparse - pp)
 Created by Alex Vear (axvr - https://github.com/axvr)
-This code is released under the MIT Licence
+This code is released under the Unlicence.
 
 For help please see the example script (ppexample.py) and the comments
 within the code of this file.

@@ -1,5 +1,6 @@
 # Random code to find which triangle numbers and which square numbers are the same
-# Written 13 Jul 2016 by Alex Vear
+# Written: 13 Jul 2016 by Alex Vear
+# Licence: Unlicence
 
 STARTVALUE = 1      #set the start value for the program to test
 ENDVALUE = 1000000  #set the end value for the program to test

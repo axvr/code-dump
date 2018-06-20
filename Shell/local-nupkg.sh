@@ -1,6 +1,8 @@
 #!/bin/sh
 
 # Easily install a NuGet package locally on UNIX-like systems
+# Written: March 2018
+# Licence: Unlicence - Alex Vear
 
 
 # Print usage information
@@ -25,13 +27,13 @@ done
 if [ -z "$VERSION" ]
 then
     VERSION=$(basename "$PACKAGE" | \
-        sed -n 's/^.\+\.\([0-9]\+\.[0-9]\.[0-9]\)\.nupkg$/\1/gp')
+        sed 's/^.\+\.\([0-9]\+\.[0-9]\.[0-9]\)\.nupkg$/\1/g')
 fi
 
 if [ -z "$PACKAGE_NAME" ]
 then
     PACKAGE_NAME=$(basename "$PACKAGE" | \
-        sed -n 's/\(\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\?\.nupkg$//gp')
+        sed 's/\(\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\?\.nupkg$//g')
 fi
 
 if [ -z "$PACKAGE" -o -z "$VERSION" ]

@@ -1,8 +1,10 @@
 #!/bin/sh
 # OmniSharp-roslyn Management tool
+#
+# Works on: Linux, macOS & Cygwin/WSL
 
 usage() {
-    printf "usage: %s [-i] [-r] [-v version] [-V] [-l location] [-H] [-u]\\n" "$0"
+    printf "usage: %s [-HMu] [-v version] [-l location]\\n" "$0"
 }
 
 # From: https://gist.github.com/lukechilds/a83e1d7127b78fef38c2914c4ececc3c
@@ -10,59 +12,61 @@ get_latest_version() {
     curl --silent "https://api.github.com/repos/OmniSharp/omnisharp-roslyn/releases/latest" |
     grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'
 }
-get_current_version() {
-    # TODO implement this
-    printf "???"
-}
-
 
 # Options:
-# * i :: install (will also update if already installed)
-# * r :: remove
-# * v :: version to use (otherwise use latest)
-# * V :: print the version information
-# * l :: where to install the server
-# * u :: help / usage info
-# * H :: install the HTTP version of the server
-# Options to add later:
-# * M :: type of server: mono or regular
-# * S :: start the server (takes a solution file)
+# -v | version to use (otherwise use latest)
+# -l | where to install the server
+# -u | help / usage info
+# -H | install the HTTP version of the server
+# -M | type of server: mono or regular
 
-LOCATION="$HOME/.omnisharp/"
+location="$HOME/.omnisharp/"
 
-while getopts irv:Vl:uH o "$@"
+while getopts v:l:HMu o "$@"
 do
     case "$o" in
-        i)      install;;
-        r)      remove;;
-        v)      VERSION="$OPTARG";;
-        V)
-            printf "Latest version:    %s\\n" "$(get_latest_version)"
-            printf "Installed version: %s\\n" "$(get_current_version)"
-            exit 0
-            ;;
-        l)      LOCATION="$OPTARG";;
-        H)      HTTP=".http";;
+        v)      version="$OPTARG";;
+        l)      location="$OPTARG";;
+        H)      http=".http";;
+        M)      mono=1;;
         u)      usage && exit 0;;
         [?])    usage && exit 1;;
     esac
 done
 
-case "$(uname -s)" in
-    "Linux")    OS="linux";;
-    "Darwin")   OS="osx";;
-    *)          exit 1;;
-esac
-case "$(uname -m)" in
-    "x86_64")   MACHINE="x64";;
-    "i368")     MACHINE="x86";;
-    *)          exit 1;;
-esac
-FILE_NAME=$(printf "omnisharp%s-%s-%s.tar.gz" "$HTTP" "$OS" "$MACHINE")
+ext="tar.gz"
 
-if [ -z "$VERSION" ]; then
-    VERSION="$(get_latest_version)"
+case "$(uname -m)" in
+    "x86_64")   machine="x64";;
+    "i368")     machine="x86";;
+    *)          exit 1;;
+esac
+case "$(uname -s)" in
+    "Linux")    os="linux-${machine}";;
+    "Darwin")   os="osx";;
+    *)
+        if [ "$(uname -o)" = "Cygwin" ]; then
+            os="win-${machine}"
+            ext="zip"
+        else
+            printf "Error: unknown system: %s\\n" "$(uname -s)"
+            exit 1
+        fi
+        ;;
+esac
+[ ! -z "$mono" ] && os="mono"
+file_name="omnisharp${http}-${os}.${ext}"
+[ -z "$version" ] && version="$(get_latest_version)"
+base_url="https://github.com/OmniSharp/omnisharp-roslyn/releases/download"
+full_url="${base_url}/${version}/${file_name}"
+echo "$full_url"
+
+rm -r "$location"
+mkdir -p "$location"
+curl -L "$full_url" -o "$location/$file_name"
+if [ "$ext" = "zip" ]; then
+    unzip "$location/$file_name" -d "$location/"
+    chmod +x $(find "$location" -type f)
+else
+    tar -zxvf "$location/$file_name" -C "$location/"
 fi
-BASE_URL="https://github.com/OmniSharp/omnisharp-roslyn/releases/download"
-FULL_URL="${BASE_URL}/${VERSION}/${FILE_NAME}"
-echo "$FULL_URL"
