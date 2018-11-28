@@ -1,7 +1,7 @@
 # Code Dump
 
 A repository of random code, programming notes and project assets I have
-created, ranging from experiments to actual fully functional programs.
+created, ranging from experiments to fully functioning programs.
 
 Feel free to use or modify any of this code where ever and how ever you like
 (within the scope of the licence). Everything here is unlicenced and in the
@@ -13,10 +13,11 @@ public domain, unless otherwise stated.
 
 ### Some of the fully functional programs
 
-* **[OmniSharp-Manager]** - A super simple shell script to make installing and
-  updating OmniSharp easier. It has since been moved to
-  [OmniSharp-vim](https://github.com/OmniSharp/omnisharp-vim), I also ended up
-  writing a version of it in PowerShell.
+* **[OmniSharp-Manager]** - A simple shell script to simplify the process of
+  installing and updating OmniSharp. It has since been moved to
+  [OmniSharp-vim](https://github.com/OmniSharp/omnisharp-vim) and expanded. I
+  also wrote a version of it in PowerShell, shortly after the Unix-only version
+  was merged into upstream OmniSharp-vim.
 * **[Local-NuPkg]** - A small shell script to simplify the process of installing
   downloaded [NuGet](https://www.nuget.org) packages for .NET Core, without
   having to use/configure a feed. This is a feature missing from the
