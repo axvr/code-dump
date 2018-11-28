@@ -1,0 +1,7 @@
+== Reversing numbers ==
+
+Some experimenting with different methods of reversing a number in Perl.
+1. Mathematically[0]
+2. Array manipulation
+
+[0]: https://medium.com/@ManBearPigCode/how-to-reverse-a-number-mathematically-97c556626ec6
