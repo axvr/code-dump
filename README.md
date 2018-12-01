@@ -29,13 +29,13 @@ public domain, unless otherwise stated.
 
 ### Some incomplete/deprecated programs
 
-* **[ALIS]** - [Arch Linux](https://archlinux.org) Installation Script. Was
-  going to be renamed to Archaic - The Primitive [Arch Linux] Installer, but I
-  abandoned the project in late 2017 to focus on other tasks. ALIS had reached
-  in insane level of code complexity, that a second rewrite was required to
-  keep it maintainable (I was very new to programming at the time). A full
-  explanation can be found in the project's
-  [`README.md`](https://github.com/axvr/ALIS/blob/master/README.md).
+* **[ALIS]** - [Arch Linux](https://archlinux.org) Installation Script. This
+  project was going to be renamed to Archaic (The Primitive Arch Linux
+  Installer,) but I abandoned the project in late 2017 to focus on other tasks.
+  ALIS had reached in insane level of code complexity, that a second rewrite
+  was required to keep it maintainable (I was very new to programming at the
+  time). A full explanation can be found in the project's
+  [`README.md`](https://github.com/axvr/alis/blob/master/README.md) file.
 * **[Vivid-Legacy.vim]** - The code from before the
   [rewrite](https://github.com/axvr/vivid.vim). This version was a fork of
   [Vundle.vim](https://github.com/VundleVim/Vundle.vim).
@@ -43,6 +43,6 @@ public domain, unless otherwise stated.
 
 [OmniSharp-Manager]:https://github.com/OmniSharp/omnisharp-vim/tree/master/installer
 [Vivid-Legacy.vim]:https://github.com/axvr/Vivid-Legacy.vim
-[ALIS]:https://github.com/axvr/ALIS
-[GNOME Theme Switcher]:https://github.com/axvr/dotfiles/blob/master/manage/gnome-theme.sh
-[Local-NuPkg]:https://github.com/axvr/codedump/blob/master/Shell/local-nupkg.sh
+[ALIS]:https://github.com/axvr/alis
+[GNOME Theme Switcher]:https://github.com/axvr/codedump/blob/master/shell/gnome-theme.sh
+[Local-NuPkg]:https://github.com/axvr/codedump/blob/master/shell/local-nupkg.sh
