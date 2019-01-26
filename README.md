@@ -25,6 +25,10 @@ public domain, unless otherwise stated.
 * **[GNOME Theme Switcher]** - A simple bash script to allow modifying a large
   number of GNOME settings at once, esentially creating "complete themes". For
   more info [see here](https://www.reddit.com/r/unixporn/comments/73l9qg/gnome_script_to_switch_gnome_themes/).
+* **[Font Installer]** - A shell script to make installing fonts on Unix-like
+  operating systems easier. The previous solutions all had problems, for
+  example if installing through a package manager, the packages will have
+  different names depending on the repository used.
 
 
 ### Some incomplete/deprecated programs
@@ -46,3 +50,4 @@ public domain, unless otherwise stated.
 [ALIS]:https://github.com/axvr/alis
 [GNOME Theme Switcher]:https://github.com/axvr/codedump/blob/master/shell/gnome-theme.sh
 [Local-NuPkg]:https://github.com/axvr/codedump/blob/master/shell/local-nupkg.sh
+[Font Installer]:https://github.com/axvr/codedump/blob/master/shell/font-installer.sh
