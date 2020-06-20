@@ -1,0 +1,106 @@
+#!/bin/sh
+
+# tf - locate task files
+
+# tf - v0.01
+
+# Written in 2019 by Alex Vear.
+# Public domain.  No rights reserved.
+
+# TODO: speed this up
+# TODO: provide option to only search for one file (to optimise td)
+
+usage="usage: $0 [-ghu] [DIRECTORY]"
+
+# Parse command line arguments
+
+if [ "$#" -eq 0 ]
+then
+    path="$(pwd)"
+elif [ "$#" -eq 1 ]
+then
+    case "$1" in
+        '-g')  # Use global path (default to '$HOME')
+
+            if [ -n "$TASKPATH" ]
+            then
+                path="$TASKPATH"
+            else
+                path="$HOME"
+            fi
+            ;;
+
+        '-h')  # Display help information
+            cat << EOF
+tf - locate task files
+
+$usage
+
+OPTIONS:
+  -g | use global task files (location defined by the \$TASKPATH variable)
+  -h | display this help message
+  -u | display short usage info
+
+ARGUMENTS:
+  DIRECTORY | path to look for the task files (defaults to current directory; falls back to \$HOME)
+
+VARIABLES:
+  \$TASKPATH | directory path to (defaults to "\$HOME")
+EOF
+            exit 0
+            ;;
+
+        '-u')  # Display usage information
+            echo "$usage"
+            exit 0
+            ;;
+
+        *)  # Set path
+
+            if [ -d "$1" ]
+            then
+                path="$1"
+            else
+                echo "error: directory \"${1}\" doesn't exist"
+                exit 1
+            fi
+            ;;
+    esac
+else
+    printf "error: invalid number of arguments provided\\n%s\\n" "$usage"
+    exit 1
+fi
+
+find_file() {
+    upper_name="$(echo "$1" | tr '[[:lower:]]' '[[:upper:]]')"
+    lower_name="$(echo "$1" | tr '[[:upper:]]' '[[:lower:]]')"
+
+    find "$path" -maxdepth 1 \
+        -name "$upper_name" -o \
+        -name "${upper_name}.?*" -o \
+        -name "$lower_name" -o \
+        -name "${lower_name}.?*" -o \
+        -name ".$lower_name" -o \
+        -name ".${lower_name}.?*" \
+    | sed -n '1p'
+}
+
+todo="$(find_file "TODO")"
+doing="$(find_file "DOING")"
+done="$(find_file "DONE")"
+
+# If no matching files are found fall back to `$HOME'
+# TODO: prevent recursion check if global flag was already given
+if [ "${todo}${doing}${done}" = '' ]
+then
+    exec "$0" -g
+fi
+
+# TODO: -c ext | create the required files?
+
+# TODO: maybe only operate based on the TODO file.
+# TODO: generate names for files if they don't yet exist
+
+printf "TODO: %s\\n" "$todo"
+printf "DOING: %s\\n" "$doing"
+printf "DONE: %s\\n" "$done"

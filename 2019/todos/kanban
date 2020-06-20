@@ -1,0 +1,44 @@
+#!/bin/sh
+
+# Simple kanban boards using Vim.
+# Basic concept stolen from https://news.ycombinator.com/item?id=17542961
+
+# Written in 2019 by Alex Vear.
+# Public domain.  No rights reserved.
+
+# TODO: integreate with ut better or change ut to work with tasks.
+# TODO: support other editors, e.g. nvi and emacs.
+# TODO: option to only open some of the files
+# TODO: integrate into Vim
+# TODO: split out and enhance the todo file locator
+
+# Window orientation when displayed in Vim
+# 0: horizontal
+# 1: vertical
+vert=0
+
+usage() { printf "%s: [-vhsu]\\n" "$0" ; }
+
+while getopts vhsu o "$@"
+do
+    case "$o" in
+        v)      vert=1 ;;
+        h|s)    vert=0 ;;
+        u)      usage ; exit 0 ;;
+        [?])    usage ; exit 1 ;;
+    esac
+done
+
+if [ -f "TODO" ]; then
+    files="TODO DOING DONE"
+elif [ -f "TODO.txt" ]; then
+    files="TODO.txt DOING.txt DONE.txt"
+elif [ -f "TODO.md" ]; then
+    files="TODO.md DOING.md DONE.md"
+elif [ -f "TODO.org" ]; then
+    files="TODO.org DOING.org DONE.org"
+else
+    files="$HOME/.todo.txt $HOME/.doing.txt $HOME/.done.txt"
+fi
+
+[ "$vert" -eq 1 ] && vim -O $files || vim -o $files

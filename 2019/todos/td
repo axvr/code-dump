@@ -1,0 +1,47 @@
+#!/bin/sh
+
+# A better and simpler todo management system.
+# This is ~2x faster than ut, and ~7x faster than t.
+
+# Written in 2019 by Alex Vear.
+# Public domain.  No rights reserved.
+
+[ -z "$TODO" ] && TODO="$HOME/.todo.txt"
+[ ! -f "$TODO" ] && touch "$TODO"
+
+# TODO: detect TODO file in current dir
+
+is_int() { test "$(expr "$1" : '^[0-9]\+$')" -gt 0 && return 0 || return 1; }
+usage() { printf "usage: %s [-u] [-f line1 [line2]] [-e [line message]] [message]\\n" "$0"; }
+
+if [ "$#" -eq 0 ] || [ "$1" = '-l' ]; then
+    nl -b a -w 3 -s '  ' "$TODO"
+elif [ "$1" = '-u' ]; then
+    usage
+elif [ "$1" = '-e' ]; then
+    shift
+
+    if [ "$#" = 0 ]; then
+        exec "$EDITOR" "$TODO"
+    elif is_int "$1"; then
+        line="$1"
+        shift
+        sed -i "${line}s/.*/$*/" "$TODO"
+    else
+        echo "error: expected a line number followed by a new message"
+        exit 1
+    fi
+elif [ "$1" = '-f' ] || [ "$1" = '-x' ]; then
+    shift
+
+    if [ "$#" = 1 ] && is_int "$1"; then
+        sed -i "${1}d" "$TODO"
+    elif [ "$#" = 2 ] && is_int "$1$2"; then
+        sed -i "${1},${2}d" "$TODO"
+    else
+        echo "error: expected a line number or a line number range"
+        exit 1
+    fi
+else
+    echo "$*" >> "$TODO"
+fi

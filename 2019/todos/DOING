@@ -1,0 +1,105 @@
+- New task management system for projects
+  - Format agnostic. Do what you want. Files can even be in Org-mode or Markdown.
+  - Interactive mode.
+  - Integrate task management stuff with todos.
+  - Do it, don't organise it.
+  - Works with the TODO and BUGS files already in some projects.
+  - Similar to t (maintain heritage).
+
+  TASK UTILS:
+    - todos: lists all 'TODO's in a project or file.
+    - kanban: creates a kanban board of tasks.
+    - td: manage task files used in the kanban.
+    - tf: find task files.
+
+  VIM CMDS:
+    - :Kanban (opens a kanban board in a new tab)
+    - :Todos (populates the qf list with found comment tags)
+    - :!td
+
+-------------------------------------------------------------------
+
+TD:
+  Manage task files.
+
+  This is really just an extremely simple text editor with some
+  additional task management functionality.
+
+  FEATURES:
+    - Create new tasks.
+    - Delete tasks.
+    - List tasks.
+    - Open the task list in `$EDITOR`.
+
+  EXTRA FEATURES:
+    - Allow adding multi-line entries.
+    - Disable numbering of the lines.
+    - Undo changes.
+
+  FLAGS:
+    `-g`                : use the global task file.
+    `-f FILE`           : path to a task file.
+    `-e LINE-NR MESSAGE`: edit a task.
+    `-x LINE-NR`        : delete a task.
+    `-x LINE-NR LINE-NR`: delete a range.
+    `-o|-e`             : open the task list in `$EDITOR`.
+    `-a|MESSAGE`        : append an item to the task list.
+    `-i`                : insert an item at a specific line number in the task list.
+    `-l|`               : print the task list to STDOUT.
+    `-h`                : print help information to STDOUT.
+
+
+KANBAN:
+  View Kanban board of tasks.
+
+  EXAMPLE:
+  ---
+    TODO:
+      1  vivid: add PluginTest command
+      2  todo: finish my new version of ut
+      3  todo: finish tasks util
+      4  todo: integrate tasks into Vim
+
+    DOING:
+      1  something: asdf
+
+    DONE:
+      1  something else
+  ---
+
+  FEATURES:
+    - Display kanban in STDOUT.
+    - Open kanban in $EDITOR.
+    - Move tasks from column to column.
+
+  FLAGS:
+    `-g` : use global task files.
+    `-l` : print the kanban board to STDOUT.
+    `-h` : print help information to STDOUT.
+    ...
+
+
+TF:
+  Locate task files.
+
+  If given a dir, check inside that dir for the files.
+
+  VARS:
+    - `TASKPATH`
+
+  NAMES:
+    - `TODO`
+    - `TODO.*`
+    - `todo`
+    - `todo.*`
+    - `.todo`
+    - `.todo.*`
+    --- same again for the following
+    - `DONE`
+    - `DOING`
+    --- not initially supported
+    - `BUGS`
+
+
+TODOS:
+  List all `TODO`s and other comment tags within a project or file.

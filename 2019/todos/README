@@ -1,0 +1,17 @@
+== cli todo tools ==
+
+2019-03, 2019-07
+
+I had been using a simple CLI todo management script I wrote on 2019-03-21
+called 'ut' which was an attempt to create a simpler version of 't'[1].  'ut'
+had some limitations so I decided to write a suite of simple scripts to manage
+per-project and global todo lists.
+
+I eventually stopped working on it and built an even simpler solution, however
+I still have faith in this idea, even though I didn't need it in the end.
+
+The 'DOING' file contains the plan and explains the role of each command.
+
+[1]: http://stevelosh.com/projects/t/
+
+Public domain.  No rights reserved.
