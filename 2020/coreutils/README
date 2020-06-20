@@ -1,0 +1,10 @@
+== coreutils ==
+
+2020-05 — ...
+
+Unix commands with as few features as possible ported to various languages as
+a learning exercise.
+
+These are not intended for actual use, just a a learning/practice exercise.
+
+Public domain.  No rights reserved.
