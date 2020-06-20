@@ -1,0 +1,10 @@
+== http-req ==
+
+2017-12
+
+As I was learning more about how to use PowerShell in December 2017, I wrote my
+first PoSH script to try to simplify the usage of performing HTTP requests from
+the command line.  The goal was to create a replacement the Postman GUI app.
+I never finished this script.
+
+Public domain.  No rights reserved.

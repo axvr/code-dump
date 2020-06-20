@@ -1,0 +1,8 @@
+== local-nupkg ==
+
+2018-03
+
+A small script to simplify the process of manually installing a NuGet package
+on a *nix OS.  I don't think it works anymore.
+
+Public domain.  No rights reserved.

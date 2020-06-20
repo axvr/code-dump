@@ -1,0 +1,11 @@
+== Fizzbuzz ==
+
+2018-11
+
+Although I had been programming for a while before this, this was still my
+first time ever writing fizzbizz.  I decided to write 2 versions (using
+identical logic flow) and compare the performance differences between the two.
+Surprisingly there was a huge performance difference.  I'm still not actually
+sure why.
+
+Public domain.  No rights reserved.
