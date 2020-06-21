@@ -10,5 +10,6 @@ number?](https://www.youtube.com/watch?v=Gh8h8MJFFdI)".  This video inspired me
 to try and write a small program to solve the question he posed by calculating
 which numbers are both triangle and square numbers.
 
-Upon reflection 3 years later, it is clear that this program was extremely
-inefficient, which I guess means I have actually learnt something.
+3 years later, it is clear that this program was extremely inefficient;
+I decided to see how fast I could make it.  The optimised versions are in the
+[improved](improved) folder.
