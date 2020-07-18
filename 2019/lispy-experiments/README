@@ -1,0 +1,14 @@
+== Lispy experiments ==
+
+Very early code from my first experiments with the Lisp family of languages.
+
+The `objects.clj` file is older of the two, it was created during one of my
+many failed attempts to learn Clojure.  (Sadly I have lost all the other code
+from those failed attempts.)
+
+The `cool.scm` file was created by following along to "Scheme Lisp: Feel the
+Cool" by Andy Balaam [1].  This video made it all click for me; it got me over
+the initial learning curve that all the Clojure tutorials I tried had failed to
+do.
+
+[1]: https://www.youtube.com/watch?v=tA1clbGDczI
