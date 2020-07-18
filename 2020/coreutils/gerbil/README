@@ -1,0 +1,7 @@
+Unix commands ported to Gerbil Scheme with as few features as possible.
+
+---
+
+Gerbil seems to be much slower than CHICKEN at printing to stdout, and
+calculating factorials, but faster at other things such as calculating
+fibonacci numbers.
