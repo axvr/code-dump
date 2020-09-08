@@ -1,0 +1,14 @@
+== dotfiles outtakes ==
+
+Helper scripts made throughout 2018.
+
+`align' and `wtf' are small scripts to aid with some editing tasks while I was
+still learning to use standard Unix utilities and Vim.
+
+The purpose of the other scripts was to act as an abstract interface/wrapper
+around various tools and systems to allow window managers to interact with
+parts of the system.  These scripts would attempt to determine the correct way
+to achieve what was requested as best it could.
+
+The only one I was (and still am) quite proud of is the `audio` script although
+it remained unfinished.
