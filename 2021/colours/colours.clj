@@ -160,19 +160,26 @@
        math/sqrt))
 
 
+(defn apply-weights [{:keys [h s l]}]
+  {:h (* h 10)
+   :s (* s 7)
+   :l (* l 1)})
+
+
 (defn find-closest [colour table]
   (let [base (rgb-hex->hsl colour)]
     (first
-      (sort (fn [x y] (< (:dist x)
-                         (:dist y)))
-            (map (fn [[rgb code]]
-                   {:dist (->> rgb
-                               rgb-hex->hsl
-                               vals
-                               (euclidean-distance (vals base)))
-                    :code code
-                    :hex rgb})
-                 table)))))
+      (sort-by
+        :dist
+        (map (fn [[rgb code]]
+               {:dist (->> rgb
+                           rgb-hex->hsl
+                           apply-weights
+                           vals
+                           (euclidean-distance (vals (apply-weights base))))
+                :code code
+                :hex rgb})
+             table)))))
 
 
 (comment
@@ -194,7 +201,7 @@
   (pprint (find-closest "#679D80" xterm-colours))
 
   (pprint (find-closest "#C9C9C9" xterm-colours))
-  (pprint (find-closest "#666967" xterm-colours)) ; FIXME: inaccurate result.
+  (pprint (find-closest "#666967" xterm-colours))  ; FIXME: inaccurate result.
 
   (pprint (find-closest "#222222" xterm-colours))
   (pprint (find-closest "#2A2A2A" xterm-colours))
