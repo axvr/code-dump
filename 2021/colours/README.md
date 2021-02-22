@@ -5,7 +5,7 @@ _February 2021_
 Tool to find the best xterm colour for a true colour (24-bit colour) value.
 
 ```clojure
-(load-file "colours.clj")
+(require 'colours)
 (ns 'colours)
 (find-closest "#88766F" xterm-colours)
 ```

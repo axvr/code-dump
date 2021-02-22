@@ -1,2 +1,4 @@
-{:deps {org.clojure/clojure {:mvn/version "1.10.2"}
-        org.clojure/math.numeric-tower {:mvn/version "0.0.4"}}}
+{:paths ["."]
+ :deps {org.clojure/clojure {:mvn/version "1.10.2"}
+        org.clojure/math.numeric-tower {:mvn/version "0.0.4"}
+        dk.ative/docjure {:mvn/version "1.14.0"}}}

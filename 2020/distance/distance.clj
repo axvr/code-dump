@@ -24,3 +24,13 @@
 
 ;; (distance [78 84 87 91 76]
 ;;           [92 83 91 79 89])
+
+;; Edit 2021-02-14: created a more compact version of this function.
+(defn distance2
+  "Calculate Euclidean distance between points p and q in Euclidean space."
+  [p q]
+  (->> (map (fn [p1 q1]
+              (math/expt (- p1 q1) 2))
+            p q)
+       (reduce +)
+       math/sqrt))

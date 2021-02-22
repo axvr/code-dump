@@ -1,4 +1,4 @@
-(ns cube.main)
+(ns cube)
 
 (defn new-cube []
   {:back

@@ -13,8 +13,8 @@ Cube rotation is missing which is the final piece to make full Rubik's Cube
 simulator possible.  (Without cube rotation you can only rotate one face.)
 
 ```clojure
-(load-file "src/cube/main.clj")
-(ns cube.main)
+(require 'cube)
+(ns cube)
 
 (print-cube (new-cube))
 ;;         +-------+
