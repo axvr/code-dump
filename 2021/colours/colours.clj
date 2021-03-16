@@ -105,6 +105,7 @@
        (reduce +)))
 
 
+;;; TODO: use Delta-E LAB colour space.
 (defn rgb->hsl
   "Convert RGB values to HSL."
   [[r g b]]
@@ -167,7 +168,10 @@
 
 
 (defn find-closest [colour table]
-  (let [base (rgb-hex->hsl colour)]
+  (let [base (-> colour
+                 rgb-hex->hsl
+                 apply-weights
+                 vals)]
     (first
       (sort-by
         :dist
@@ -176,7 +180,7 @@
                            rgb-hex->hsl
                            apply-weights
                            vals
-                           (euclidean-distance (vals (apply-weights base))))
+                           (euclidean-distance base))
                 :code code
                 :hex rgb})
              table)))))
@@ -189,6 +193,8 @@
   ;; FIXME: improve accuracy:
   ;;   - use LAB colour space over HSL, or
   ;;   - add and properly calibrate weighting.
+
+  ;; TODO: generate spreadsheet of automated weights to find best one(s).
 
   (pprint (find-closest "#88766F" xterm-colours))  ; FIXME: inaccurate result.
   (pprint (find-closest "#998B70" xterm-colours))
