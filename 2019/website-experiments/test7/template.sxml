@@ -1,0 +1,14 @@
+`((doctype "html")
+
+  (html (@ (lang "en_GB"))
+
+        (head (meta (@ (charset "utf-8")))
+              (title ,full-title)
+              (meta (@ (name "viewport")
+                       (content "width=device-width, initial-scale=1"))))
+
+        (body (div (@ (class "container"))
+                   (article (@ (class "item content"))
+                            ,content)
+                   (nav (@ (class "side-content"))
+                        )))))

@@ -1,0 +1,42 @@
+- Find all modified files. (DJB redo clone in Scheme?)
+
+- Extract defined tags from document.
+  - `<!-- METADATA -->`, `---`, separate file, etc.
+- Generate `full-title`, `created-on`, `file-name`, `description`, `path` tags.
+  - Default `author` tag to "Alex Vear".
+- Generate HTML meta tags from tags.
+- Generate HTML?
+- Generate TOC (store as tag)?
+- Copy template, inject document.
+- Replace all tags.
+
+- Place generated file in correct sub-dir within the dist directory + page assets.
+
+
+NOTE: document generation could depend on other documents (e.g. /essays)
+
+Maybe allow inlining code in the documents, which can be executed.
+
+Tags can contain lisp code?
+
+Preloading?
+
+Eliminate `index.md` hell?
+
+
+
+== Tools & languages ==
+
+- CHICKEN Scheme
+- TXR
+- POSIX Shell
+- AWK
+- M4
+- Redo
+
+
+(tags "file-path") -> hash-map of tags
+(gen-metatags tagmap)
+
+
+tag defaults + tag construction config files?

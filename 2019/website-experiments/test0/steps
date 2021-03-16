@@ -1,0 +1,20 @@
+md --> content.html
+content.html --> html
+
+default.content.html.do (builds html content files)
+default.html.do         (builds final html files)
+
+all.do:              redo html
+default.html.do:     redo-ifcreate content.html
+default.content.do:  redo-ifchange md
+deploy:              redo-targets | xargs rm
+
+
+md --> html
+html --> html.final
+html.final --> /dist
+
+all.do:                redo html.dist
+default.dist.do:       redo-ifchange $1.html
+default.html.do:       redo-ifchange md
+all.do:                html.dist --> /dist

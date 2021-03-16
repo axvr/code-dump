@@ -1,0 +1,31 @@
+(define (page)
+  `((title . "Home")
+    (content . '((h1 "Who am I?")
+                 (p "Hello world")
+                 (p ,(string-append "Foo" "bar"))))))
+
+(define (html sxml)
+  ;; TODO: escape HTML in text.
+  ;; TODO: HTML attributes.
+
+  (define str string-append)
+
+  (define (h1 text)
+    (str "<h1>" text "</h1>"))
+
+  (define (p text)
+    (str "<p>" text "</p>"))
+
+  (define (process i)
+    (if (null? i)
+      '()
+      (str (eval-in-environment (car i)) (process (cdr i)))))
+
+  (process sxml))
+
+;; TODO: run HTML generation in custom environment.
+
+
+(define (eval-in-environment lisp)
+  (let ((env (scheme-report-environment 5)))
+    (eval `((lambda () ,lisp)) env)))

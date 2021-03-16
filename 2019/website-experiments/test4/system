@@ -1,0 +1,11 @@
+== Document generation ==
+
+1. Take a document.
+2. Extract the tags from the document. (remove the code for them?)
+3. Generate tags using the tag generation table.
+4. Generate HTML <meta> tags.
+5. Convert the document format (using the format converter).
+6. Calculate the name of the new file.
+7. Inject the converted document into a copy of the template with name determined in [6].
+8. Replace all tags.
+9. Copy assets.

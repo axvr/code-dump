@@ -1,0 +1,119 @@
+#+TITLE: New website generator
+
+- Find all modified files. (DJB redo clone in Scheme?)
+
+- Extract defined tags from document.
+  - `<!-- METADATA -->`, `---`, separate file, etc.
+- Generate `full-title`, `created-on`, `file-name`, `description`, `path` tags.
+  - Default `author` tag to "Alex Vear".
+- Generate HTML meta tags from tags.
+- Generate HTML?
+- Generate TOC (store as tag)?
+- Copy template, inject document.
+- Replace all tags.
+
+- Place generated file in correct sub-dir within the dist directory + page assets.
+
+
+NOTE: document generation could depend on other documents (e.g. essays)
+
+Maybe allow inlining code in the documents, which can be executed.
+
+Preloading?
+
+Eliminate need to manually create and edit `index.md` files?
+
+
+#+BEGIN_SRC scheme
+(tags "file-path") -> hash-map of tags
+(gen-metatags tagmap)
+#+END_SRC
+
+
+tag defaults + tag construction config files?
+
+
+* Stages
+
+1. Extract and remove meta data from HTML files (build map).
+2. Construct HTML file from template.
+3. Support directory construction.
+4. Markdown (and other markup language support).
+
+
+* Tools & languages
+
+- CHICKEN Scheme
+- POSIX Shell
+- Redo
+
+
+* Run
+
+#+BEGIN_SRC sh
+./inject md-defaults.scm template.md < index.md | pandoc -f gfm -t html | ./inject html-defaults.scm template.html
+
+./inject <(./attributes md-defaults.scm < index.md) < index.md
+
+#+END_SRC
+
+
+
+* New plan
+
+Must support content written in Markdown and/or HTML.
+
+Need to construct the final directory layout.
+
+** What can be done manually?
+
+This stuff can be automated at a later date.
+
+- RSS feed.
+- Posts (list of essays) page.
+- Notes page.
+- Directory/path creation.
+- Table of contents.
+- Various other minor things.
+
+** What needs automating?
+
+- Injecting content into template.
+- Replacing meta tags.
+  - Title
+  - Description?
+  - +Author+  (Most likely it'll just be me.)
+  - Redirects
+- Converting from Markdown (and others) to HTML.
+- Packaging site into single directory.
+
+I can start by regenerating every page from scratch.
+
+** Possible implementations
+
+*** 1. The Unix way
+
+#+BEGIN_EXAMPLE
+./index.md
+./index.meta
+#+END_EXAMPLE
+
+Inside of the ~index.meta~ are the values to replace in the actual document
+during generation.  These values follow a specific format so they can be
+retrieved by constructing a Unix command.
+
+*** 2. Another way
+
+Command which has a couple of arguments.
+
+#+BEGIN_EXAMPLE
+for f in `find *.html`; do
+    path=`dirname $f`
+    ./gen template.html $f > "dist/$path/index.html"
+done
+
+for f in `find *.md`; do
+    path=`dirname $f`
+    cat $f | pandoc -f gfm -t html | ./gen template.html > "dist/$path/index.html"
+done
+#+END_EXAMPLE
