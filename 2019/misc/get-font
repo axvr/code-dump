@@ -1,0 +1,150 @@
+#!/bin/sh -e
+
+# A simple font installer for Unix-like OSs
+#
+# Author:  Alex Vear (axvr)
+# Public domain.  No rights reserved.
+
+# Usage examples:
+#   $ get-font inconsolata
+#   $ get-font "source code pro"
+#   $ get-font Source-Code-Pro roboto-mono
+#   $ get-font souRce_Code-pRO
+
+# TODO: better error messages (and print in colour) similar to `redo-sh`
+# TODO: prevent duplicate fonts causing problems
+
+requires() {
+    for i in "$@"
+    do
+        if [ ! "$(command -v "$i")" ]
+        then
+            (>&2 printf "Error: '%s' is not installed\\n" "$i")
+            exit 1
+        fi
+    done
+}
+
+message() { printf "Installed font: %s\\n" "$1"; }
+
+download() {
+    requires "curl"
+    dir="$(dirname "$FONT_DIR/$2")"
+    [ -d "$dir" ] && rm -r "$dir"
+    mkdir -p "$dir"
+    curl -sSL "$1" -o "$FONT_DIR/$2" #2> get-font-log || die "Something"
+}
+
+die() {
+    printf "Failed to install: %s\\n" "$1"
+    exit 1
+}
+
+github_latest_version() {
+    requires "curl"
+    curl -sS "https://api.github.com/repos/$1/$2/releases/latest" |
+    grep '"tag_name":' | sed 's/.*"\([^"]\+\)".*/\1/'
+}
+
+[ -z "$FONT_DIR" ] && FONT_DIR="$HOME/.fonts"
+
+# TODO: add more fonts:
+#   - Iosevka (https://be5invis.github.io/Iosevka/)
+#   - Liberation Mono (find home page)
+#   - Liberation Sans (find home page)
+#   - Terminus (http://terminus-font.sourceforge.net/)
+#   - APL333 + APL385 (http://apl385.com/fonts/)
+
+font_list=$(cat <<EOF
+DejaVu Sans/Serif   (https://dejavu-fonts.github.io/)
+Envy Code R         (https://damieng.com/blog/2008/05/26/envy-code-r-preview-7-coding-font-released)
+Fira Code           (https://github.com/tonsky/FiraCode)
+Fira Mono           (https://mozilla.github.io/Fira/)
+Fira Sans           (https://mozilla.github.io/Fira/)
+Font Awesome        (https://fontawesome.com/)
+Hack                (https://sourcefoundry.org/hack/)
+Inconsolata         (http://www.levien.com/type/myfonts/inconsolata.html)
+Noto Sans           (https://fonts.google.com/specimen/Noto+Sans)
+Noto Serif          (https://fonts.google.com/specimen/Noto+Serif)
+Roboto Condensed    (https://fonts.google.com/specimen/Roboto+Condensed)
+Roboto              (https://fonts.google.com/specimen/Roboto)
+Roboto Mono         (https://fonts.google.com/specimen/Roboto+Mono)
+Roboto Slab         (https://fonts.google.com/specimen/Roboto+Slab)
+Source Code Pro     (https://adobe-fonts.github.io/source-code-pro/)
+EOF
+)
+
+# Simplify installing fonts from Google Fonts
+google_fonts() {
+    requires "unzip"
+    url="https://fonts.google.com/download?family=$(echo "$1" | sed 's/\s/%20/g')"
+    download "$url" "$f/$f.zip"
+    unzip -q "$FONT_DIR/$f/$f.zip" -d "$FONT_DIR/$f/"
+    message "$1"
+}
+
+[ -z "$1" ] && echo "$font_list"
+
+for f in "$@"
+do 
+    f="$(echo "$f" | tr '[:upper:]' '[:lower:]' | tr -s ' _-' '_')"
+    case "$f" in
+        roboto)             google_fonts "Roboto";;
+        roboto_mono)        google_fonts "Roboto Mono";;
+        roboto_slab)        google_fonts "Roboto Slab";;
+        roboto_condensed)   google_fonts "Roboto Condensed";;
+        source_code_pro)    google_fonts "Source Code Pro";;
+        noto_sans)          google_fonts "Noto Sans";;
+        noto_serif)         google_fonts "Noto Serif";;
+        inconsolata)        google_fonts "Inconsolata";;
+        fira_sans)          google_fonts "Fira Sans";;
+        fira_mono)          google_fonts "Fira Mono";;
+
+        fira_code)
+            requires "unzip"
+            version="$(github_latest_version "tonsky" "FiraCode")"
+            url="https://github.com/tonsky/FiraCode/releases/download/$version/Fira_Code_v$version.zip"
+            download "$url" "fira-code/Fira_Code_v$version.zip"
+            unzip -q "$FONT_DIR/fira-code/Fira_Code_v$version.zip" -d "$FONT_DIR/fira-code/"
+            message "Fira Code"
+            ;;
+
+        hack)
+            requires "tar" "gzip"
+            version="$(github_latest_version "source-foundry" "Hack")"
+            url="https://github.com/source-foundry/Hack/releases/download/$version/Hack-$version-ttf.tar.gz"
+            download "$url" "hack/Hack-$version-ttf.tar.gz"
+            tar -zxf "$FONT_DIR/hack/Hack-$version-ttf.tar.gz" -C "$FONT_DIR/hack"
+            message "Hack"
+            ;;
+
+        dejavu)
+            requires "tar" "bzip2"
+            url="http://sourceforge.net/projects/dejavu/files/dejavu/2.37/dejavu-fonts-ttf-2.37.tar.bz2"
+            download "$url" "dejavu-fonts-ttf-2.37/dejavu-fonts-ttf-2.37.tar.bz2"
+            tar -jxf "$FONT_DIR/dejavu-fonts-ttf-2.37/dejavu-fonts-ttf-2.37.tar.bz2" -C "$FONT_DIR/"
+            message "DejaVu"
+            ;;
+
+        font_awesome)
+            requires "unzip"
+            archive_name="fontawesome-free-5.2.0-desktop.zip"
+            url="https://use.fontawesome.com/releases/v5.2.0/$archive_name"
+            download "$url" "font-awesome/fontawesome-free-5.2.0-desktop.zip"
+            unzip -q "$FONT_DIR/font-awesome/$archive_name" -d "$FONT_DIR/font-awesome/"
+            message "Font Awesome (free)"
+            ;;
+
+        envy_code|envy_code_r)
+            requires "unzip"
+            url="https://download.damieng.com/fonts/original/EnvyCodeR-PR7.zip"
+            download "$url" "envy_code_r/EnvyCodeR-PR7.zip"
+            unzip -q "$FONT_DIR/envy_code_r/EnvyCodeR-PR7.zip" -d "$FONT_DIR/envy_code_r/"
+            message "Envy Code R"
+            ;;
+
+        *)  printf "Error: Invalid font '%s'\\n" "$f";;
+    esac &
+done
+
+wait
