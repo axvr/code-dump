@@ -1,13 +1,16 @@
-;;;; Turing Machine simulation in Clojure.
+;;;; Turing Machine simulator in Clojure.
 ;;;;
 ;;;; Created by Alex Vear on 2021-02-28.
 ;;;; Public domain.  No rights reserved.
 
 
-(ns turing-machine)
+(ns turing-machine
+  "Turing Machine simulator in Clojure.")
 
 
-(defn- expand-tape [{:keys [head tape blank] :as ar}]
+(defn- expand-tape
+  "Simulate an infinite tape by expanding the input tape as necessary."
+  [{:keys [head tape blank] :as ar}]
   (conj
     ar
     (cond
@@ -19,11 +22,15 @@
                                 :head head}))))
 
 
-(defn- next-rule [{:keys [rules state tape head]}]
+(defn- next-rule
+  "Return the next rule for the Turing machine to execute."
+  [{:keys [rules state tape head]}]
   (get (rules state) (tape head)))
 
 
-(defn- apply-rule [ar rule]
+(defn- apply-rule
+  "Return new state after applying the next rule."
+  [ar rule]
   (let [head  (:head ar)
         move  (:move rule)
         write (:write rule)
@@ -35,10 +42,12 @@
            :state state})))
 
 
-(defn run [ar]
-  (let [<-ar-> (expand-tape ar)]
-    (if-let [rule (next-rule <-ar->)]
-      (recur (apply-rule <-ar-> rule))
+(defn run
+  "Start a Turing machine simulator on the given inputs."
+  [ar]
+  (let [<ar> (expand-tape ar)]
+    (if-let [rule (next-rule <ar>)]
+      (recur (apply-rule <ar> rule))
       ar)))
 
 
