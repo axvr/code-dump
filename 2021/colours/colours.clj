@@ -1,7 +1,7 @@
-;;; Convert 24-bit colours to closest xterm-256 colour.
-;;;
-;;; Written by Alex Vear (2021-02-14).
-;;; Public domain.  No rights reserved.
+;;;; Convert 24-bit colours to closest xterm-256 colour.
+;;;;
+;;;; Written by Alex Vear (2021-02-14).
+;;;; Public domain.  No rights reserved.
 
 
 (ns colours
@@ -99,21 +99,26 @@
   [digits]
   (->> digits
        reverse
-       (map-indexed
-         (fn [idx dgt]
-           (* dgt (math/expt 16 idx))))
+       (map-indexed (fn [idx dgt]
+                      (* dgt (math/expt 16 idx))))
        (reduce +)))
 
 
-;;; TODO: use Delta-E LAB colour space.
-(defn rgb->hsl
-  "Convert RGB values to HSL."
-  [[r g b]]
-  (let* [x-max (max r g b)
+;;; TODO: use CIELAB colour space instead of HSL.
+(defn srgb->hsl
+  "Convert sRGB values to HSL."
+  ([hex]
+   (->> hex
+        (keep decode-hex-char)
+        (partition 2)
+        (map hex->dec)
+        (map #(/ % 255))  ; Normalise from 0-255 -> 0-1.
+        (apply srgb->hsl)))
+  ([r g b]
+   (let [x-max (max r g b)
          x-min (min r g b)
          chroma (- x-max x-min)
-         lightness (/ (+ x-max x-min)
-                      2)
+         lightness (/ (+ x-max x-min) 2)
          saturation (if (or (= lightness 0)
                             (= lightness 1))
                       0
@@ -133,22 +138,10 @@
                             :else (+ 4
                                      (/ (- r g)
                                         chroma))))]
-                 (if (< h 0)
-                   (+ h 360)
-                   h)))]
-    {:h hue
-     :s (* saturation 100)
-     :l (* lightness 100)}))
-
-
-(defn rgb-hex->hsl [rgb-hex]
-  (->> rgb-hex
-       (map decode-hex-char)
-       (filter some?)         ; Remove invalid characters.
-       (partition 2)          ; Split into R, G and B components.
-       (map hex->dec)
-       (map #(/ % 255))       ; Normalise from 0-255 -> 0-1.
-       rgb->hsl))
+                 (if (< h 0) (+ h 360) h)))]
+     {:h hue
+      :s (* saturation 100)
+      :l (* lightness 100)})))
 
 
 (defn euclidean-distance
@@ -168,16 +161,13 @@
 
 
 (defn find-closest [colour table]
-  (let [base (-> colour
-                 rgb-hex->hsl
-                 apply-weights
-                 vals)]
+  (let [base (-> colour srgb->hsl apply-weights vals)]
     (first
       (sort-by
         :dist
         (map (fn [[rgb code]]
                {:dist (->> rgb
-                           rgb-hex->hsl
+                           srgb->hsl
                            apply-weights
                            vals
                            (euclidean-distance base))
@@ -189,12 +179,6 @@
 (comment
 
   (use 'clojure.pprint)
-
-  ;; FIXME: improve accuracy:
-  ;;   - use LAB colour space over HSL, or
-  ;;   - add and properly calibrate weighting.
-
-  ;; TODO: generate spreadsheet of automated weights to find best one(s).
 
   (pprint (find-closest "#88766F" xterm-colours))  ; FIXME: inaccurate result.
   (pprint (find-closest "#998B70" xterm-colours))
