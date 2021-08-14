@@ -11,4 +11,9 @@
 
 (defn load-user-conf []
   (when user-conf
-    (load-file (str user-conf))))
+    (try
+      (load-file (str user-conf))
+      (catch Exception e
+        (binding [*out* *err*]
+          (printf "ERROR: Exception occurred while loading \"%s\"\n" user-conf)
+          (prn e))))))
