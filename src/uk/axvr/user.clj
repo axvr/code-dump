@@ -1,3 +1,5 @@
+;;;; No rights reserved.  Public domain.
+
 (ns uk.axvr.user
   (:require [clojure.java.io :as io]))
 

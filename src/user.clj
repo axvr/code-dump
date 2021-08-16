@@ -1,3 +1,5 @@
+;;;; No rights reserved.  Public domain.
+
 (ns user
   (:require uk.axvr.user))
 
