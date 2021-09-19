@@ -1,0 +1,125 @@
+#+TITLE: Plan
+
+* Atomic builds
+
+Make sure that files are built correctly and reliably to avoid breaking the
+build system.  The resulting binaries must be fully reproducible!
+
+[[https://cr.yp.to/redo/atomic.html]]
+
+Example in ~redo~:
+
+#+BEGIN_SRC shell
+redo-ifchange foo
+tr x y < foo
+#+END_SRC
+
+Equivalent to in ~Makefile~:
+
+#+BEGIN_SRC make
+bar: foo
+	tr x y < foo > bar
+#+END_SRC
+
+As safe as:
+
+#+BEGIN_SRC make
+bar: foo
+	tr x y < foo > bar
+        fsync bar
+        mv bar
+#+END_SRC
+
+* Incremental builds
+
+Only rebuild files with modified dependencies.
+
+* Parallel builds
+
+With atomic builds, we are able to build dependencies in parallel,
+significantly improving build times.
+
+* Recursive builds
+
+Support recursive builds.
+
+[[https://web.archive.org/web/20060210000808/http://www.tip.net.au/~millerp/rmch/recu-make-cons-harm.html][Recursive Make Considered Harmful]]
+
+* Easy to use and understand
+
+Mistakes and misunderstandings can be avoided by making the tool easy to use
+and providing good names and docs.
+
+* Place build artefacts in different directory
+
+Being able to place build artefacts in a ~dist/~ directory is really handy for
+many people.
+
+Perhaps even avoid cluttering the source directory with artefacts (e.g. object
+files) they can also be placed else where (e.g. ~.redo/.../src/example.o~).
+
+Maybe copy source files to prevent changes during the build from affecting the
+build?
+
+* Check if files have changed using hashes
+
+By hashing the file (and storing that hash for later), we can compare it
+against the previous hash to determine if the contents have been modified.
+
+We can also check other file stats, but the hash check takes priority.
+
+* Write build steps in any language
+
+It should be possible to write the build steps in any language necessary. This
+makes the tool easier to use and allows the developer to pick the best language
+for the job.
+
+This can be achieved using "she bangs" in build scripts.
+
+* Work with multiple build targets
+
+Different systems may require different build steps. This tool should make that
+easy.
+
+* Simple core, flashy UI
+
+The core mechanics of the build tool should be as simple as possible to reduce
+chances of bugs and speed up build times.  A fancy UI can be used to allow
+browsing errors, and see which files are currently building.
+
+#+BEGIN_EXAMPLE
+$ build
+src/foo
+  src/foo.o
+  src/bar.o
+#+END_EXAMPLE
+
+Green: Built successfully.
+Orange: Build in progress.
+Red: Build failed.
+
+(Only on interactive terminals.)
+
+* Work for any project type which needs building
+
+Some build tools (e.g. ~make~ and ~redo~) are best suited for C projects, we
+need a simple build tool which works for many more.
+
+* Build multiple parts of the code at the same time
+
+#+BEGIN_EXAMPLE
+$ redo foo &
+$ redo bar &
+$ wait
+#+END_EXAMPLE
+
+Build separate parts of the project at the same time without treading on each
+other's toes.
+
+* Work as a test runner
+
+Both tools would do pretty much the same thing, so we might as well provide
+test runner functionalities.
+
+We could also help with TDD as we only run tests where the source has been
+modified.

@@ -1,0 +1,8 @@
+My implementation of redo will not use environment variables to pass the CLI
+options between the tools. Use a configuration file (~.redo/rc~).
+
+Main redo program creates the file. The others may only read from it (share
+reading code between the tools).
+
+This allows multiple different builds to occur at the same time with my redo
+implementation.
