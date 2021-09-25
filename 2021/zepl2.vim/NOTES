@@ -1,0 +1,79 @@
+* Zepl2
+
+Planning for Zepl2, a much more powerful version of Zepl designed to be wrapped
+around to build highly integrated REPLs.
+
+- Initially focusing on Clojure support, with plans to expand to Common Lisp.
+  - Simpler and more generic version of Conjure but for Vim.
+- Minimal REPL management core with helper functions.
+- Wrap language specific code around core.
+
+
+** Problems with Zepl1
+
+- Not extensible enough.  Cannot write decent REPL wrappers. 
+- Can only handle simple things.
+- Using rlwrap causes atrifacting on prompts making it difficult to read.
+- Syntax highlighting is not possible.
+- Only one REPL supported per-Vim instance.
+
+
+** Questions
+
+- Is it possible to be backwards compatibile with Zepl1/is it worth trying?
+- Write in Vim9 script or portable Vimscript for Neovim compatibility?
+- New name?
+
+
+** Thoughts
+
+(create-repl {...})
+ ^ function  ^ config
+
+The `create-repl` function accepts a Vim dictionary of strings to functions.
+
+
+** Control flow
+
+- Pre-process user-entered text.
+- Post-process text returned from REPL.
+  - Distinguish between stderr and stdout?
+  - (Return input text too.)
+- Handle multi-line user input.
+- Configure keybindings and REPL behaviour.
+- Name of REPL window.
+- Filetype in of REPL window.
+- Send arbitrary text to REPL.
+- Hide specific input and output.
+- Wrap REPL buffer.
+- Handle exit event.
+- Get buffer number.
+- Multiple REPLs.
+- Set prompt.
+
+- Zepl accepts a dictionary as input to determine how to handle the command.
+- Zepl returns the REPL output wrapped in a dictionary.
+
+
+** Clojure
+
+zepl.vim
+zepl-clojure.vim
+
+- prepl and socket REPL support?
+- Map `K` key to send a silent command to Clojure REPL, open in split.
+- :CljSrc opens source code in split?
+- Integrate errors into `:messages`?
+- OmniCompletion.
+- Syntax highlight error messages and docs?
+
+(meta (ns-resolve 'turing-machine 'simulate))
+(meta (var turing-machine/simulate))
+
+
+** Common Lisp
+
+- Debugger support.
+
+
+vim: set ft=outline :
