@@ -9,12 +9,25 @@ class Db:
         self.path = path
 
     def __enter__(self):
-        self.conn = sqlite3.connect(self.path)
+        self.conn = sqlite3.connect(
+            self.path,
+            # Autoconvert DB values back to Python types.
+            detect_types=sqlite3.PARSE_DECLTYPES)
+
+        # Return rows as dictionary-like objects.
+        self.conn.row_factory = sqlite3.Row
+
         self.cur = self.conn.cursor()
+
         return self
 
     def __exit__(self, *_):
+        self.conn.commit()
+        self.cur.close()
         self.conn.close()
+
+    def exec(self, query, params={}):
+        return self.cur.execute(query, params)
 
 def open_db(path=None):
     """Create a new DB context.  If no path is specified, fetch from config."""
