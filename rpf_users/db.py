@@ -1,4 +1,5 @@
 import sqlite3
+import os.path
 from . import app
 
 class Db:
@@ -18,3 +19,10 @@ class Db:
 def open_db(path=None):
     """Create a new DB context.  If no path is specified, fetch from config."""
     return Db(path or app.config["DATABASE"])
+
+def init_db(path=None):
+    script_file = os.path.join(app.root_path, 'schema.sql')
+    with open(script_file) as f:
+        script = ''.join(f.readlines())
+        with open_db() as db:
+            db.cur.executescript(script)
