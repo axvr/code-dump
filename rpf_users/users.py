@@ -116,13 +116,32 @@ def create_user_endpoint():
 def get_users():
     with open_db() as db:
         users = db.exec('SELECT id, username FROM users').fetchall()
-        return {
-            'users': list(
-                map(lambda u: {'id': u['id'], 'username': u['username']}, users))
-        }
+        return {'users': list(map(dict, users))}
 
 
 @app.route("/users", methods=["GET"])
 def get_users_endpoint():
     users = get_users()
     return jsonify(users)
+
+
+def get_user(id):
+    with open_db() as db:
+        user = db.exec('''
+            SELECT id, username, email_address, is_active, created_at
+            FROM users
+            WHERE id = :id
+            LIMIT 1
+            ''',
+            {'id': id}).fetchone()
+        if user:
+            return dict(user)
+
+
+@app.route("/users/<int:id>", methods=["GET"])
+def get_user_endpoint(id):
+    user = get_user(id)
+    if user:
+        return jsonify(user)
+    else:
+        return jsonify({'error': 'User not found.'}), 404

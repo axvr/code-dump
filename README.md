@@ -58,4 +58,7 @@ curl http://127.0.0.1:5000/users
 curl http://127.0.0.1:5000/users \
   -H 'Content-Type: application/json' \
   -d '{"username": "foo", "password": "very secure password", "email_address": "foo@example.com"}'
+
+# Get details on specific user.
+curl http://127.0.0.1:5000/users/1
 ```
