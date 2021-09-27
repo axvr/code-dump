@@ -1,0 +1,2 @@
+*     trim-trailing-whitespace eol=lf final-newline
+*.py  expand-tab tab-stop=4 line-length=79
