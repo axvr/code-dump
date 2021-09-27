@@ -6,8 +6,14 @@ def create_app(config=None):
 
     app = Flask(__name__, instance_relative_config=True)
 
+    # Source global configuration file.
     app.config.from_pyfile('config.py', silent=True)
 
+    # Source per-environment configuration file.
+    if "ENV" in app.config:
+        app.config.from_pyfile(f'config_{app.config["ENV"]}.py', silent=True)
+
+    # Load override configuration options (useful for tests).
     if config:
         app.config.from_mapping(config)
 
