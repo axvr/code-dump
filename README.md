@@ -19,6 +19,9 @@ flask run
 
 # Initialise DB.
 flask init-db
+
+# Run tests.
+pytest
 ```
 
 
@@ -39,4 +42,7 @@ flask run
 
 # Initialise DB.
 flask init-db
+
+# Run tests.
+pytest
 ```
