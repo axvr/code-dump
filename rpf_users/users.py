@@ -83,6 +83,18 @@ def index():
 
 
 def create_user(user):
+    """
+    Create a new user.
+
+    Expects a user dictionary with the following info:
+      - username
+      - email_address
+      - password
+
+    If successful, returns a dictionary containing the ID of the user.
+
+    If unsuccessful, returns a dictionary containing the failure reason.
+    """
     validation_res = is_valid_user_model(user)
     if validation_res.is_valid:
         with open_db() as db:
@@ -114,6 +126,7 @@ def create_user_endpoint():
 
 
 def get_users():
+    """Returns a list of users."""
     with open_db() as db:
         users = db.exec('SELECT id, username FROM users').fetchall()
         return {'users': list(map(dict, users))}
@@ -126,6 +139,7 @@ def get_users_endpoint():
 
 
 def get_user(id):
+    """Returns details on a specific user."""
     with open_db() as db:
         user = db.exec('''
             SELECT id, username, email_address, is_active, created_at
@@ -148,6 +162,7 @@ def get_user_endpoint(id):
 
 
 def delete_user(id):
+    """Deletes user with specified id."""
     with open_db() as db:
         db.exec('DELETE FROM users WHERE id = :id', {'id': id})
 
@@ -162,6 +177,7 @@ def delete_user_endpoint(id):
 
 
 def set_active(id, is_active):
+    """Set if a user is active or inactive."""
     with open_db() as db:
         if is_active:
             is_active = 1
