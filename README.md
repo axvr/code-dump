@@ -46,3 +46,16 @@ flask init-db
 # Run tests.
 pytest
 ```
+
+
+## Test with Curl
+
+```sh
+# Get list of users.
+curl http://127.0.0.1:5000/users
+
+# Create a new user.
+curl http://127.0.0.1:5000/users \
+  -H 'Content-Type: application/json' \
+  -d '{"username": "foo", "password": "very secure password", "email_address": "foo@example.com"}'
+```

@@ -111,3 +111,18 @@ def create_user_endpoint():
     else:
         code = 200
     return jsonify(resp), code
+
+
+def get_users():
+    with open_db() as db:
+        users = db.exec('SELECT id, username FROM users').fetchall()
+        return {
+            'users': list(
+                map(lambda u: {'id': u['id'], 'username': u['username']}, users))
+        }
+
+
+@app.route("/users", methods=["GET"])
+def get_users_endpoint():
+    users = get_users()
+    return jsonify(users)
