@@ -14,7 +14,11 @@ pip install --upgrade pip
 pip install -r requirements.txt
 
 # Start server.
-FLASK_ENV=development flask run
+export FLASK_ENV=development
+flask run
+
+# Initialise DB.
+flask init-db
 ```
 
 
@@ -32,4 +36,7 @@ pip install -r requirements.txt
 # Start server.
 $env:FLASK_ENV = "development"
 flask run
+
+# Initialise DB.
+flask init-db
 ```

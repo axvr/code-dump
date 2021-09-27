@@ -21,8 +21,14 @@ def open_db(path=None):
     return Db(path or app.config["DATABASE"])
 
 def init_db(path=None):
+    """
+    Initialise the DB with the basic schema.
+
+    This should use a proper DB migration system, but this is just a demo.
+    """
     script_file = os.path.join(app.root_path, 'schema.sql')
     with open(script_file) as f:
         script = ''.join(f.readlines())
         with open_db() as db:
             db.cur.executescript(script)
+        return script
