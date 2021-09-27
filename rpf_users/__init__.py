@@ -28,3 +28,6 @@ app = create_app()
 
 # Import modules containing Flask CLI commands.
 from . import cli
+
+# Import modules containing routes.
+from . import users
