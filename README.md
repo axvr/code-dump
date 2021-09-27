@@ -61,4 +61,9 @@ curl http://127.0.0.1:5000/users \
 
 # Get details on specific user.
 curl http://127.0.0.1:5000/users/1
+
+# Delete a user.
+curl http://127.0.0.1:5000/users/1 \
+  -H 'X-API-KEY: very secret key' \
+  -X DELETE
 ```

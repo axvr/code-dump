@@ -145,3 +145,17 @@ def get_user_endpoint(id):
         return jsonify(user)
     else:
         return jsonify({'error': 'User not found.'}), 404
+
+
+def delete_user(id):
+    with open_db() as db:
+        db.exec('DELETE FROM users WHERE id = :id', {'id': id})
+
+
+@app.route("/users/<int:id>", methods=["DELETE"])
+def delete_user_endpoint(id):
+    if 'X-API-KEY' in request.headers:
+        if request.headers['X-API-KEY'] == app.config["SECRET_KEY"]:
+            delete_user(id)
+            return {}
+    return jsonify({'error': 'Invalid X-API-KEY header value.'}), 401
