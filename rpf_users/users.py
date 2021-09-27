@@ -159,3 +159,25 @@ def delete_user_endpoint(id):
             delete_user(id)
             return {}
     return jsonify({'error': 'Invalid X-API-KEY header value.'}), 401
+
+
+def set_active(id, is_active):
+    with open_db() as db:
+        if is_active:
+            is_active = 1
+        else:
+            is_active = 0
+        db.exec('UPDATE users SET is_active = :active WHERE id = :id',
+                {'id': id, 'active': is_active})
+
+
+@app.route("/users/<int:id>/active", methods=["POST"])
+def set_active_endpoint(id):
+    set_active(id, is_active=True)
+    return {}
+
+
+@app.route("/users/<int:id>/inactive", methods=["POST"])
+def set_inactive_endpoint(id):
+    set_active(id, is_active=False)
+    return {}

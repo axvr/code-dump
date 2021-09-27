@@ -66,4 +66,10 @@ curl http://127.0.0.1:5000/users/1
 curl http://127.0.0.1:5000/users/1 \
   -H 'X-API-KEY: very secret key' \
   -X DELETE
+
+# Mark a user as active.
+curl http://127.0.0.1:5000/users/1/active -X POST
+
+# Mark a user as inactive.
+curl http://127.0.0.1:5000/users/1/inactive -X POST
 ```
