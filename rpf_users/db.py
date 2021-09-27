@@ -17,6 +17,4 @@ class Db:
 
 def open_db(path=None):
     """Create a new DB context.  If no path is specified, fetch from config."""
-    if path:
-        return Db(path)
-    return Db(app.config["DATABASE"])
+    return Db(path or app.config["DATABASE"])
