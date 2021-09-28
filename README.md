@@ -13,12 +13,12 @@ python3 -m venv venv
 pip install --upgrade pip
 pip install -r requirements.txt
 
+# Initialise DB.
+flask init-db
+
 # Start server.
 export FLASK_ENV=development
 flask run
-
-# Initialise DB.
-flask init-db
 
 # Run tests.
 pytest
@@ -30,18 +30,18 @@ pytest
 ```powershell
 # Set up virtual environment.
 py -3 -m venv venv
-.\venv\Scripts\activate.ps1
+Set-ExecutionPolicy -ExecutionPolicy Bypass  # Allow executing ps1 scripts.
+.\venv\Scripts\Activate.ps1
 
 # Install dependencies.
-pip install --upgrade pip
 pip install -r requirements.txt
+
+# Initialise DB.
+flask init-db
 
 # Start server.
 $env:FLASK_ENV = "development"
 flask run
-
-# Initialise DB.
-flask init-db
 
 # Run tests.
 pytest
