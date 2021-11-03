@@ -1,8 +1,15 @@
 # user.clj
 
+*8th August 2021 – 16th August 2021*
+
 Automatically loads a global `user.clj` file on REPL/Clojure start, if one
 exists at `~/.clojure/user.clj` or `~/.config/clojure/user.clj`.
 
+This was moved here from a full repository (on 2021-11-03) because I discovered
+that user-level/global Clojure configs are not handled as expected (i.e. it all
+gets packages with your application).  As such, this library is no longer used.
+
+<!--
 Just place the following in your global `deps.edn` file.
 
 ```clojure
@@ -11,16 +18,6 @@ Just place the following in your global `deps.edn` file.
                       :git/sha "12e9c0dc2dbd27ae68b5a9f7be830931a532cd2f"}}
  ,,,}
 ```
+-->
 
-
-## Legal
-
-*No Rights Reserved.*
-
-All source code, documentation and associated files packaged with
-`uk.axvr.user` are dedicated to the public domain.  A full copy of the CC0
-(Creative Commons Zero 1.0 Universal) public domain dedication should have been
-provided with this extension in the `COPYING` file.
-
-The author is not aware of any patent claims which may affect the use,
-modification or distribution of this software.
+*Public domain.  No Rights Reserved.*
