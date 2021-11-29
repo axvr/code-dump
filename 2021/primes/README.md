@@ -2,9 +2,9 @@
 
 _4th August 2021 – 9th August 2021_
 
-This is a collection of early [Clojure](https://clojure.org/)
+This is a collection of my early
 [Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)
-solutions for a
+solutions in [Clojure](https://clojure.org/) for a
 [programming language drag race](https://github.com/PlummersSoftwareLLC/Primes)
 organised by Dave Plummer of [Dave's Garage](https://www.youtube.com/c/DavesGarage).
 
