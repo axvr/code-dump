@@ -76,4 +76,11 @@ zepl-clojure.vim
 - Debugger support.
 
 
+** Ideas
+
+- Screen dump.
+- 'cmd' can be a Vim function.
+- Restore from Session.vim
+
+
 vim: set ft=outline :
