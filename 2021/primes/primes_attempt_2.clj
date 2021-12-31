@@ -1,6 +1,9 @@
-(ns primes
+(ns primes-attempt-2
   "Clojure implementation of Sieve of Eratosthenes by Alex Vear (axvr)"
   (:import [java.time Instant Duration]))
+
+
+;;;; First fast version.
 
 
 (set! *warn-on-reflection* true)

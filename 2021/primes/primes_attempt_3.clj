@@ -1,11 +1,12 @@
-(ns new-sieve
+(ns primes-attempt-3
   "Clojure implementation of Sieve of Eratosthenes by Alex Vear (axvr)
 
   This implementation is fast and faithful to Dave's original implementation."
   (:import [java.time Instant Duration]))
 
 
-;;; Public domain.  2021-11-28
+;;;; Iteration on primes_attempt_2.clj with faster maths.
+;;;; Public domain.  2021-11-28
 
 
 ;; Disable overflow checks on mathematical ops and warn when compiler is unable

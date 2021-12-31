@@ -1,5 +1,8 @@
-(ns primes
+(ns primes-attempt-1
   (:import [java.time Instant Duration]))
+
+
+;;;; First attempts, just trying to get something working.
 
 
 ;; (set! *print-length* 30)
