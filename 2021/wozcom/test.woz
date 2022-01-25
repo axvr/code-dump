@@ -1,0 +1,12 @@
+F000 R
+N
+ LDA #'A'
+LOOP JSR $FFEF
+ CLC
+ ADC #$1
+ CMP #'Z'+1
+ BNE LOOP
+ RTS
+<ESC>
+A
+R $300

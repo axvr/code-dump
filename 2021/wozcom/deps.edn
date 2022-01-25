@@ -1,0 +1,4 @@
+{:paths ["."]
+ :deps {org.clojure/clojure {:mvn/version "1.10.3"}
+        uk.axvr/cereal      {:git/url "https://github.com/axvr/cereal.git"
+                             :sha     "ca47c84efb29056700a6ae27585577e5c1084bf2"}}}
