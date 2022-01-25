@@ -23,6 +23,11 @@ around to build highly integrated REPLs.
 - Is it possible to be backwards compatibile with Zepl1/is it worth trying?
 - Write in Vim9 script or portable Vimscript for Neovim compatibility?
 - New name?
+- Use Vim's "prompt buffer"
+  - No native multiline support.
+    - Can hack something together but won't be able to exit previous lines.
+      - Use different prompt on continued lines.  e.g. ....>
+    - Maybe do something similar to vim-fireplace e.g. q: q/ etc.
 
 
 ** Thoughts

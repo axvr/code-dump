@@ -8,6 +8,7 @@
   (:require [clojure.math.numeric-tower :as math]))
 
 
+;; https://jonasjacek.github.io/colors/
 (def xterm-colours
   {"000000" 16,  "00005F" 17,  "000087" 18,  "0000AF" 19
    "0000D7" 20,  "0000FF" 21,  "005F00" 22,  "005F5F" 23
