@@ -2,6 +2,10 @@
   (:require [uk.axvr.cereal :as serial]
             [clojure.string :as str]))
 
+
+;;; Public domain.  No rights reserved.
+
+
 (serial/list-ports)
 
 (def port (serial/open "ttyUSB0" :baud-rate 9600))
