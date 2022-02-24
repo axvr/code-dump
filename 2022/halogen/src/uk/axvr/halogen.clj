@@ -38,10 +38,19 @@
   ([resource rel]
    (let [links (:_links resource)]
      (or (get links rel)
-         ;; TODO: support vectors of links.
-         (some #(= (:name (second %)) rel) links))
-     ))
-  ([resource rel idx]))
+         (some
+           (fn [[_ link]]
+             (let [match #(when (= (:name %) rel) %)]
+               (if (or (vector? link) (list? link))
+                 (some match link)
+                 (match link))))
+           links))))
+  ([resource rel idx]
+   (let [links (:_links resource)]
+     (when-let [link (get links rel)]
+       (when (or (vector? link) (list? link))
+         (or (get link idx)
+             (some #(when (= (:name %) idx) %) link)))))))
 
 
 (comment
@@ -57,13 +66,39 @@
       :foo {:href "http://example.com"}}}
     :biz)
 
-  ;; TODO
   (find-rel
     {:_links
      {:bar {:href "http://example.com/bar"}
       :foo {:href "http://example.com"
             :name :biz}}}
     :biz)
+
+  (find-rel
+    {:_links
+     {:bar {:href "http://example.com/bar"}
+      :foo [{:href "http://example.com"
+             :name :biz}
+            {:href "http://example.com/baz"
+             :name :baz}]}}
+    :baz)
+
+  (find-rel
+    {:_links
+     {:bar {:href "http://example.com/bar"}
+      :foo [{:href "http://example.com"
+             :name :biz}
+            {:href "http://example.com/baz"
+             :name :baz}]}}
+    :foo 1)
+
+  (find-rel
+    {:_links
+     {:bar {:href "http://example.com/bar"}
+      :foo [{:href "http://example.com"
+             :name :biz}
+            {:href "http://example.com/baz"
+             :name :baz}]}}
+    :foo :biz)
   )
 
 
@@ -81,7 +116,7 @@
         charset      (as-> properties %
                        (or % "")
                        (re-find #"charset=([A-Za-z0-9-]+)" %)
-                       (nth % 2 "UTF-8")
+                       (nth % 1 "UTF-8")
                        (str/upper-case %))]
     {:content-type content-type
      :media-type   media-type
@@ -91,7 +126,7 @@
 (comment
   (extract-content-type {:headers {}})
   (extract-content-type
-    {:headers {"Content-type" "application/hal+json"}})
+    {:headers {"Content-type" "application/hal+json;charset=utf-16"}})
   )
 
 
