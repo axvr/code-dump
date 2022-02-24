@@ -3,6 +3,25 @@
 A compliant and reliable HAL library for Clojure.
 
 
+## Installation
+
+Add the following to your `deps.edn` file:
+
+```clj
+{:deps {uk.axvr/halogen
+        {:git/tag "v1.0.0" :git/sha "xxxxxx"}}}
+```
+
+
+## Usage
+
+**Work in progress.**
+
+```clj
+(require '[uk.axvr.halogen :as hal])
+```
+
+
 ## Resources
 
 - [HAL RFC](https://github.com/mikekelly/hal-rfc) (expired)
