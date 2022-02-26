@@ -2,6 +2,18 @@
   (:require [clojure.test :refer :all]
             [uk.axvr.halogen.utils :as u]))
 
+;; TODO
+(deftest deep-merge
+  )
+(comment
+  (deep-merge [1 2] 3)
+  (deep-merge {:foo 1} {:bar 2})
+  (deep-merge {:foo 1, :bar {:biz 1}} {:bar {:baz 2}})
+  (deep-merge {:foo 1, :bar {:biz {:woz 4}}} {:bar {:baz {:cake 5}}})
+  (deep-merge {:foo 1, :bar {:biz {:woz 4}}} {:bar {:biz {:cake 5}}})
+  )
+
+
 (deftest amb-get
   (testing "Not found -> nil"
     (is (nil? (u/amb-get {"Accept" "application/json"}

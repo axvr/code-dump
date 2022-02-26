@@ -1,2 +1,3 @@
 {:linters
- {:unresolved-symbol {:exclude []}}}
+ {:unresolved-symbol {:exclude [(uk.axvr.halogen.utils/when-let*)
+                                (uk.axvr.halogen/with-defaults)]}}}

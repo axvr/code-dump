@@ -1,11 +1,9 @@
 (ns uk.axvr.halogen
   (:require [clojure.string :as str]
-            [uk.axvr.halogen.utils :as u]
+            [uk.axvr.halogen.utils :refer [when-let* deep-merge amb-get]]
+            [uk.axvr.halogen.type :as type]
             [uritemplate-clj.core :refer [uritemplate]])
-  (:import java.net.URL))
-
-
-;; NOTE: work-in-progress.
+  (:import java.net.URI))
 
 
 (defrecord Resource
@@ -16,102 +14,32 @@
   [href templated type deprecation name profile title hreflang])
 
 
-;; TODO: add rel href to base URL.
-;; TODO: CURIEs.
+;; TODO: support reading CURIEs, but not writing them, because they're stupid.
+
+
 ;; TODO: auto-convert body and response.
 
 
 (def ^:dynamic *http-fn*)
 
-(def ^:dynamic *translators*
-  "Converters per media type."
-  #{"application/hal+json" {:to   nil
-                            :from nil}
-    "application/hal+xml"  nil
-    "application/hal+edn"  nil})
 
-(def ^:dynamic *default-encoding*
+;; TODO: configurable default charset.
+;; TODO: separate var for in and out?
+;; TODO: is this needed?
+(def ^:dynamic *default-content-type*
   "application/hal+json")
 
 
-(defn find-rel
-  ([resource rel]
-   (let [links (:_links resource)]
-     (or (get links rel)
-         (some
-           (fn [[_ link]]
-             (let [match #(when (= (:name %) rel) %)]
-               (if (or (vector? link) (list? link))
-                 (some match link)
-                 (match link))))
-           links))))
-  ([resource rel idx]
-   (let [links (:_links resource)]
-     (when-let [link (get links rel)]
-       (when (or (vector? link) (list? link))
-         (or (get link idx)
-             (some #(when (= (:name %) idx) %) link)))))))
-
-
-(comment
-  (find-rel
-    {:_links
-     {:bar {:href "http://example.com/bar"}
-      :foo {:href "http://example.com"}}}
-    :foo)
-
-  (find-rel
-    {:_links
-     {:bar {:href "http://example.com/bar"}
-      :foo {:href "http://example.com"}}}
-    :biz)
-
-  (find-rel
-    {:_links
-     {:bar {:href "http://example.com/bar"}
-      :foo {:href "http://example.com"
-            :name :biz}}}
-    :biz)
-
-  (find-rel
-    {:_links
-     {:bar {:href "http://example.com/bar"}
-      :foo [{:href "http://example.com"
-             :name :biz}
-            {:href "http://example.com/baz"
-             :name :baz}]}}
-    :baz)
-
-  (find-rel
-    {:_links
-     {:bar {:href "http://example.com/bar"}
-      :foo [{:href "http://example.com"
-             :name :biz}
-            {:href "http://example.com/baz"
-             :name :baz}]}}
-    :foo 1)
-
-  (find-rel
-    {:_links
-     {:bar {:href "http://example.com/bar"}
-      :foo [{:href "http://example.com"
-             :name :biz}
-            {:href "http://example.com/baz"
-             :name :baz}]}}
-    :foo :biz)
-  )
-
-
-
-
-
-(defn extract-content-type [req]
+(defn content-type-info
+  "Extracts useful information from the Content-Type header of an HTTP request
+  or response."
+  [req]
   (let [content-type (-> req
                          :headers
-                         (u/amb-get "Content-Type" "text/html")
+                         (amb-get "Content-Type" *default-content-type*)
                          str/lower-case)
         [mime props] (str/split content-type #";" 2)
-        media-type   (str/trim mime)
+        media-type   (keyword (str/trim mime))
         properties   (when props (str/trim props))
         charset      (as-> properties %
                        (or % "")
@@ -123,62 +51,125 @@
      :charset      charset
      :properties   properties}))
 
+
+(defn- format-rel-name [rel]
+  (cond
+    (qualified-keyword? rel)
+    (recur (name rel))
+
+    (simple-keyword? rel)
+    rel
+
+    (and (string? rel) (str/includes? rel ":"))
+    (recur (second (str/split rel #":" 2)))
+
+    :else
+    (keyword rel)))
+
 (comment
-  (extract-content-type {:headers {}})
-  (extract-content-type
-    {:headers {"Content-type" "application/hal+json;charset=utf-16"}})
+  (format-rel-name "latest-posts")
+  (format-rel-name "docs:latest-posts")
+  (format-rel-name :latest-posts)
+  (format-rel-name :docs/latest-posts)
   )
 
 
-;; TODO: add base href to rel.
+(defn find-rel
+  ([resource rel]
+   (when-let* [links (:_links resource)
+               rel   (format-rel-name rel)]
+     (or (get links rel)
+         (some
+           (fn [[_ link]]
+             (let [match #(when (= (:name %) rel) %)]
+               (if (or (vector? link) (list? link))
+                 (some match link)
+                 (match link))))
+           links))))
+  ([resource rel idx]
+   (when-let* [links (:_links resource)
+               rel   (format-rel-name)
+               link  (get links rel)]
+      (when (or (vector? link) (list? link))
+        (or (get link idx)
+            (some #(when (= (:name %) idx) %) link))))))
+
+
+;; TODO: CURIEs.  "bar:foo" -> :bar/foo  namespace qualified-keyword?
+
+
 (defn compile-link
-  ([link]
-   (compile-link link {}))
-  ([link params]
+  ([base link]
+   (compile-link base link {}))
+  ([base link params]
    (when-let [href (:href link)]
-     (if (:templated link)
-       (uritemplate href (or params {}))
-       href))))
+     (let [uri (if (:templated link)
+                 (uritemplate href (or params {}))
+                 href)]
+       (.. (URI. base)
+           (resolve uri)
+           (toURL)
+           (toString))))))
 
 (comment
   (compile-link
-    {:href "http://localhost:8080/foo/{id}{?q}"
-     :templated true}
-    {:id "Somet/hing"
-     :q [2 3 "he+l/lo"]})
-
-  (compile-link
-    {:href "/foo/{id}{?q}"
+    "http://localhost:8080"
+    {:href "foo/{id}{?q}"
      :templated true}
     {:id "Somet/hing"
      :q [2 3 "he+l/lo"]}))
 
 
-(defn get
-  [resource rel & {:keys [headers body params] :as opts}]
-  (let [req (template )])
-  (*http-fn*
-    {:method :get
-     :url ""
-     :body nil
-     :headers nil}))
+(defn build-url
+  [resource rel params]
+  (let [base (:_base resource)
+        link (find-rel resource rel)]
+    (compile-link base link params)))
 
 
-(defmacro defreq [])
+(defn request
+  ([uri req]
+   ;; TODO: convert response to resource.
+   ;;   - convert response body.
+   ;; TODO: convert request body.
+   (*http-fn* (assoc req :uri uri)))
+  ([resource rel req]
+   (let [uri (build-link resource rel (:params req))]
+     (request uri req))))
 
 
-(defn post
-  ""
-  [resource rel & {:keys [headers body params] :as opts}]
-  nil)
+;; (defmacro defreq
+;;   [method doc]
+;;   {:pre [(symbol? method)
+;;          (string? doc)]}
+;;   `(defn ~method
+;;      ~doc
+;;      ;; TODO: get request# should be optional?
+;;      [resource# rel# request#]
+;;      {:pre [(map? resource#)
+;;             (map? req#)
+;;             rel#]
+;;       :post [(map? %)
+;;              (contains? % :status)]}
+;;      (request (assoc req# :method ~(keyword method)))))
+
+;; (doseq [method #{:head :options :get :post :put :delete :patch}]
+;;   (defreq method))
 
 
-(defn discover [entry]
-  ;; GET base, call :discover
-  )
+;; (defn enter [url])
+;; (defn discover [entry])
 
 
 (defn resp->hal [])
+
+
+(defmacro with-defaults
+  [defaults & body]
+  `(binding [*http-fn*
+             (fn [req#]
+               (*http-fn* (deep-merge ~defaults req#)))]
+     ~@body))
 
 
 (comment
@@ -201,6 +192,12 @@
                             req)))]
     )
 
+  (hal/with-defaults
+    {:headers {:content-type  "application/hal+json"
+               :authorization "admin"}}
+    (hal/get "https://example.com"))
+
+
   ;; (-> base-url
   ;;     (hal/get)
   ;;     (get-in [:resource :_links :foo])
@@ -216,12 +213,31 @@
         :body {:something "in the body"}
         :headers {:content-type "application/hal+json"})
       :resource)
+  (-> base-url
+      (hal/get)
+      (hal/post
+        {:rel :foo
+         :params {"foo" "hello"}
+         :body {:something "in the body"}
+         :headers {:content-type "application/hal+json"}})
+      :resource)
+  (-> base-url
+      (hal/get)
+      ;; (assoc-in [:_headers :authorization] "admin")
+      (hal/post
+        {:rel [:foo :biz]
+         :params {"foo" "hello"}
+         :body {:something "in the body"}
+         :headers {:content-type "application/hal+json"}})
+      :resource)
+  ;; TODO: pass default headers along the chain?
 
   ;; Response
   (hal/->resource
     {:foo 1
      :bar 2}
-    :links {:self "/foo"}
+    :links {:self "/foo"
+            :foo {:href "/foo/{id}" :templated true}}
     :embed {}
-    :enc :json)
+    :enc :json) ; TODO: can't do this?  What if need to modify further?
 )

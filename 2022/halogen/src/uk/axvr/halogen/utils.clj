@@ -1,5 +1,32 @@
 (ns uk.axvr.halogen.utils
+  "Collection of utility functions used by Halogen.  Avoid using these
+  from outside of Halogen."
   (:require [clojure.string :as str]))
+
+
+(defn deep-merge
+  ([coll] coll)
+  ([c1 c2]
+   (if (coll? c1)
+     (if (and (coll? c2) (map? c1))
+       (merge-with deep-merge c1 c2)
+       (merge c1 c2))
+     c2))
+  ([c1 c2 & cs]
+   (reduce deep-merge (deep-merge c1 c2) cs)))
+
+
+(defmacro when-let*
+  "Short circuiting when-let on multiple binding forms."
+  [bindings & body]
+  (let [form (first bindings)
+        tst  (second bindings)
+        rst  (subvec bindings 2)]
+    (if (seq rst)
+      `(when-let [~form ~tst]
+         (when-let* [~@rst] ~@body))
+      `(when-let [~form ~tst]
+         ~@body))))
 
 
 (defn amb-get
