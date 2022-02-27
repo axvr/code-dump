@@ -1,13 +1,16 @@
-(ns uk.axvr.halogen.type
+(ns uk.axvr.halogen.types
   "Type coercion functions for Halogen."
   (:require [cheshire.core :as json]
-            [clojure.edn :as edn]
-            [clojure.data.xml :as xml])
+            [clojure.edn :as edn])
   (:import [java.io ByteArrayInputStream
                     InputStream
                     InputStreamReader
+                    OutputStreamWriter
+                    BufferedWriter
                     BufferedReader
-                    PushbackReader]))
+                    PushbackReader
+                    PipedInputStream
+                    PipedOutputStream]))
 
 
 (defprotocol Streamable
@@ -28,12 +31,15 @@
   InputStream
   (->input-stream [this _] this)
 
-  ;; TODO: clj-http
-
   ;; TODO: extend-protocol for this in custom HttpKit handler.
   #_org.httpkit.BytesInputStream
   #_(->input-stream [this _]
       (->input-stream (.bytes ^org.httpkit.BytesInputStream this))))
+
+
+(defn- input-stream->buffered-reader
+  [^InputStream input-stream ^String charset]
+  (BufferedReader. (InputStreamReader. input-stream charset)))
 
 
 (def media-type-hierarchy
@@ -58,64 +64,56 @@
 (defmulti encode
   "Encodes data for transmission over HTTP based on its media-type.
   Returns the data as a java.io.InputStream."
-  (fn [_ ct] (:media-type ct))
+  (fn [_ opts] (:media-type opts))
   :hierarchy media-type-hierarchy)
 
 (defmethod encode :application/json
-  [body content-type]
-  ;; TODO: avoid intermediate string step.
-  (->input-stream (json/generate-string body)
-                  (:charset content-type)))
+  [body opts]
+  (let [in (PipedInputStream.)]
+    (future
+      (with-open [out     (PipedOutputStream. in)
+                  swriter (OutputStreamWriter. out (:charset opts))
+                  bwriter (BufferedWriter. swriter)]
+        (json/generate-stream body bwriter opts)))
+    in))
 
 (defmethod encode :application/edn
-  [body content-type]
+  [body opts]
   (->input-stream (prn-str body)
-                  (:charset content-type)))
-
-;; TODO
-(defmethod encode :application/xml
-  [body content-type]
-  (xml/emit))
+                  (:charset opts)))
 
 (defmethod encode :default
-  [body content-type]
-  (->input-stream body (:charset content-type)))
+  [body opts]
+  (->input-stream body (:charset opts)))
 
 
 (defmulti decode
   "Decodes a java.io.InputStream based on its media-type."
-  (fn [_ ct] (:media-type ct))
+  (fn [_ opts] (:media-type opts))
   :hierarchy media-type-hierarchy)
 
 (defmethod decode :application/json
-  [body content-type]
-  ;; TODO: split input-stream->buffered-reader out to a function.
-  (as-> body %
-    (InputStreamReader. ^InputStream % ^String (:charset content-type))
-    (BufferedReader. ^InputStreamReader %)
+  [body opts]
+  (-> body
+    (input-stream->buffered-reader (:charset opts))
     ;; TODO: custom keyword function to fix CURIEs.
     ;;   - needs to work ONLY on top level keywords in :_links.
-    (json/parse-stream ^BufferedReader % keyword)))
+    ;;   - don't convert all keywords?
+    (json/parse-stream keyword)))
 
 (defmethod decode :application/edn
-  [body content-type]
-  ;; TODO: split input-stream->buffered-reader out to a function.
-  (as-> body %
-    (InputStreamReader. ^InputStream % ^String (:charset content-type))
-    (BufferedReader. ^InputStreamReader %)
-    (PushbackReader. ^BufferedReader %)
-    (edn/read)))
-
-;; TODO
-(defmethod decode :application/xml
-  [body content-type])
+  [body opts]
+  (-> body
+      (input-stream->buffered-reader (:charset opts))
+      (PushbackReader.)
+      (edn/read)))
 
 (defmethod decode :text/plain
-  [body content-type]
+  [body opts]
   (String.
     (.readAllBytes ^InputStream body))
-    (:charset content-type))
+    (:charset opts))
 
 (defmethod decode :default
-  [body content-type]
+  [body _]
   body)

@@ -1,7 +1,7 @@
 (ns uk.axvr.halogen
   (:require [clojure.string :as str]
             [uk.axvr.halogen.utils :refer [when-let* deep-merge amb-get]]
-            [uk.axvr.halogen.type :as type]
+            [uk.axvr.halogen.types :as types]
             [uritemplate-clj.core :refer [uritemplate]])
   (:import java.net.URI))
 
@@ -12,12 +12,6 @@
 
 (defrecord Link
   [href templated type deprecation name profile title hreflang])
-
-
-;; TODO: support reading CURIEs, but not writing them, because they're stupid.
-
-
-;; TODO: auto-convert body and response.
 
 
 (def ^:dynamic *http-fn*)
@@ -96,6 +90,7 @@
 
 
 ;; TODO: CURIEs.  "bar:foo" -> :bar/foo  namespace qualified-keyword?
+;; TODO: support reading CURIEs, but not writing them, because they're stupid.
 
 
 (defn compile-link
@@ -132,6 +127,7 @@
    ;; TODO: convert response to resource.
    ;;   - convert response body.
    ;; TODO: convert request body.
+   ;; TODO: pass req and content-type info to encoder/decoder
    (*http-fn* (assoc req :uri uri)))
   ([resource rel req]
    (let [uri (build-link resource rel (:params req))]
