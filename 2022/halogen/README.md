@@ -38,8 +38,8 @@ No rights reserved.
 
 All source code, documentation and associated files packaged and distributed
 with "uk.axvr.halogen" are dedicated to the public domain. A full copy of the
-CC0 (Creative Commons Zero 1.0 Universal) public domain dedication should have
-been provided with this extension in the `COPYING` file.
+CC0 (Creative Commons Zero 1.0 Universal) public domain dedication is provided
+in the `COPYING` file.
 
 The author is not aware of any patent claims which may affect the use,
 modification or distribution of this software.
