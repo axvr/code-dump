@@ -130,7 +130,7 @@
    ;; TODO: pass req and content-type info to encoder/decoder
    (*http-fn* (assoc req :uri uri)))
   ([resource rel req]
-   (let [uri (build-link resource rel (:params req))]
+   (let [uri (build-url resource rel (:params req))]
      (request uri req))))
 
 
