@@ -53,11 +53,21 @@
     (isa? @media-type-hierarchy
           :application/hal+json
           :application/json)
+    => true
+
+    (swap! uk.axvr.halogen.types/media-type-hierarchy
+           derive :text/html :text/plain)
+
+    (isa? @media-type-hierarchy
+          :text/html
+          :text/plain)
     => true"
   (-> (make-hierarchy)
-      (derive :application/hal+json :application/json)
-      (derive :application/hal+xml  :application/xml)
-      (derive :application/hal+edn  :application/edn)
+      (derive :application/hal+json     :application/json)
+      (derive :application/vnd.hal+json :application/hal+json)
+      (derive :application/hal+xml      :application/xml)
+      (derive :application/vnd.hal+xml  :application/hal+xml)
+      (derive :application/hal+edn      :application/edn)
       (atom)))
 
 
@@ -65,7 +75,8 @@
   "Encodes data for transmission over HTTP based on its media-type.
   Returns the data as a java.io.InputStream."
   (fn [_ opts] (:media-type opts))
-  :hierarchy media-type-hierarchy)
+  :hierarchy media-type-hierarchy
+  :default :application/octet-stream)
 
 (defmethod encode :application/json
   [body opts]
@@ -79,10 +90,9 @@
 
 (defmethod encode :application/edn
   [body opts]
-  (->input-stream (prn-str body)
-                  (:charset opts)))
+  (->input-stream (prn-str body) (:charset opts)))
 
-(defmethod encode :default
+(defmethod encode :application/octet-stream
   [body opts]
   (->input-stream body (:charset opts)))
 
@@ -90,7 +100,8 @@
 (defmulti decode
   "Decodes a java.io.InputStream based on its media-type."
   (fn [_ opts] (:media-type opts))
-  :hierarchy media-type-hierarchy)
+  :hierarchy media-type-hierarchy
+  :default :application/octet-stream)
 
 (defmethod decode :application/json
   [body opts]
@@ -114,6 +125,6 @@
     (.readAllBytes ^InputStream body))
     (:charset opts))
 
-(defmethod decode :default
+(defmethod decode :application/octet-stream
   [body _]
   body)
