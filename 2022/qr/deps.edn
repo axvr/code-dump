@@ -1,0 +1,4 @@
+{:paths ["."]
+ :deps {org.clojure/clojure     {:mvn/version "1.11.0-rc1"}
+        com.google.zxing/core   {:mvn/version "3.4.1"}
+        com.google.zxing/javase {:mvn/version "3.4.1"}}}
