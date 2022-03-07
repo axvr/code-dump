@@ -81,6 +81,7 @@
 (defmethod encode :application/json
   [body opts]
   (let [in (PipedInputStream.)]
+    ;; NOTE: Stream writing is done in a separate thread to prevent deadlocking.
     (future
       (with-open [out     (PipedOutputStream. in)
                   swriter (OutputStreamWriter. out (:charset opts))

@@ -17,33 +17,43 @@
 (def ^:dynamic *http-fn*)
 
 
-;; TODO: configurable default charset.
 ;; TODO: separate var for in and out?
 ;; TODO: is this needed?
-(def ^:dynamic *default-content-type*
-  "application/hal+json")
+(def ^:dynamic *default-media-type* :application/hal+json)
+(def ^:dynamic *default-charset* "UTF-8")
 
 
-(defn content-type-info
-  "Extracts useful information from the Content-Type header of an HTTP request
+(defn- keyword->string
+  "Convert a fully qualified keyword to a string."
+  [keyword]
+  (subs (str keyword) 1))
+
+
+(def ^{:private true
+       :arglists '([headers])}
+  content-type-info
+  "Extract useful information from the Content-Type header of an HTTP request
   or response."
-  [req]
-  (let [content-type (-> req
-                         :headers
-                         (amb-get "Content-Type" *default-content-type*)
-                         str/lower-case)
-        [mime props] (str/split content-type #";" 2)
-        media-type   (keyword (str/trim mime))
-        properties   (when props (str/trim props))
-        charset      (as-> properties %
-                       (or % "")
-                       (re-find #"charset=([A-Za-z0-9-]+)" %)
-                       (nth % 1 "UTF-8")
-                       (str/upper-case %))]
-    {:content-type content-type
-     :media-type   media-type
-     :charset      charset
-     :properties   properties}))
+  (let [build
+        (memoize
+          (fn [content-type not-found-media-type not-found-charset]
+            (let [[_ media-type parameters charset]
+                  (re-find #"(?i)^\s*([^;]+)\s*(;\s*charset=\"?([A-Za-z0-9-]+)\"?)?"
+                           content-type)
+                  parameters (if charset
+                               parameters
+                               (str/lower-case
+                                 (str "; charset=" not-found-charset parameters)))
+                  media-type (if media-type
+                               (-> media-type str/trim str/lower-case keyword)
+                               not-found-media-type)]
+              {:content-type (str (keyword->string media-type) parameters)
+               :media-type   media-type
+               :parameters   parameters
+               :charset      (str/upper-case (or charset not-found-charset))})))]
+    #(build (or (amb-get % "Content-Type") "")
+            *default-media-type*
+            *default-charset*)))
 
 
 (defn- format-rel-name [rel]
