@@ -9,7 +9,8 @@ Add the following to your `deps.edn` file:
 
 ```clj
 {:deps {uk.axvr/halogen
-        {:git/tag "v1.0.0" :git/sha "xxxxxx"}}}
+        {:git/tag "v1.0" :git/sha "xxxxxx"
+         :git/url "https://github.com/axvr/halogen.git"}}}
 ```
 
 
@@ -38,7 +39,7 @@ No rights reserved.
 
 All source code, documentation and associated files packaged and distributed
 with "uk.axvr.halogen" are dedicated to the public domain. A full copy of the
-CC0 (Creative Commons Zero 1.0 Universal) public domain dedication is provided
+CC0 (Creative Commons Zero 1.0 Universal) public domain dedication can be found
 in the `COPYING` file.
 
 The author is not aware of any patent claims which may affect the use,
