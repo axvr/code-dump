@@ -1,7 +1,8 @@
 # Practical Common Lisp
 
-Experiments from working my way through [Practical Common Lisp][pcl] by Peter
-Seibel.
+_26th March 2022 – Present_
+
+Experiments from working through [Practical Common Lisp][pcl] by Peter Seibel.
 
 [pcl]: https://gigamonkeys.com/book/
 
