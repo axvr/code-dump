@@ -134,10 +134,9 @@
 (apply #'plot #'exp (list 0 4 1/2))
 
 
-(funcall #'(lambda (x y) (+ x y)) 2 3)
+(funcall (lambda (x y) (+ x y)) 2 3)
 ((lambda (x y) (+ x y)) 2 3)
 
 
 ;; lambda is a macro which expands to (function (lambda (...) ...))
-;; This means that you don't need to put #' infront of one, but you
-;; probably should anyway.
+;; This means that you don't need to put #' infront of one.
