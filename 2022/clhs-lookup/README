@@ -1,0 +1,14 @@
+== Common Lisp Hyperspec symbol lookup ==
+
+2022-04-08
+
+Clojure code to generate a file containing every Common Lisp symbol and its
+relevant page on the Common Lisp Hyperspec.
+
+The generated file is at: https://paste.sr.ht/~axvr/6fd24191e38d2ac006cd5e0107cb1d68cf007bf6
+
+I've included a script which takes a CL symbol and opens the hyperspec page for
+it in the web browser.  You may need to change the `open-urls` command to
+something else.
+
+Public domain.  No rights reserved.
