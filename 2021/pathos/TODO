@@ -1,0 +1,12 @@
+- Implement pathos
+  - pathos/->file (or path->file)
+  - pathos/->dir
+  - pathos/<-file ???
+- Write doc-strings
+- Write tests
+- Write specs
+- Write README/docs
+- Licence
+- Write essay
+- ClojureScript support (later)
+- Support symbolic links
