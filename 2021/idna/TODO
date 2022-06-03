@@ -1,0 +1,31 @@
+- Better/more unique name.
+
+- uk.axvr.idna
+  - punycode
+    - encode-label
+    - decode-label
+  - nameprep
+  - unicode->ascii
+    - can fail when resulting label is over 63 characters long.
+  - ascii->unicode
+  - split-domain-name
+  - valid-email-address?
+    - normalise-email-address
+  - valid-domain-name?
+    - normalise-domain-name
+  - ace?
+
+- Write punycode encoder and decoder.
+- Write test suite.
+- Configure CI.
+- Optimise.  Try to make it faster than java.net.IDN.
+- Write documentation.
+- Add licence.
+- Make repo public.
+- Function to encode/decode email addresses?
+  - Make a dedicated email address library?
+    - Normalise email address.
+    - Basic email address verification.
+- Needs to work in ClojureScript too.
+  - .cljc files?
+- IP address parsing and validation?
