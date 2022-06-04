@@ -1,5 +1,15 @@
 # rpf\_users
 
+_27th September 2021_
+
+This was the result of a take-home exercise for a job interview.  It was
+previously in a private repo but I have since moved it here.  I reckon it has
+been long enough...
+
+_Public domain.  No rights reserved._
+
+---
+
 ## Usage
 
 ### Unix-like OSs (Bash)
