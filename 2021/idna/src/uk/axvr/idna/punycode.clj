@@ -67,10 +67,10 @@
 
 
 (comment
-  (require 'uk.axvr.utils)
+  (require 'uk.axvr.debug)
 
   ;; (defn encode-label [l]
-  (uk.axvr.utils/quick-bench
+  (uk.axvr.debug/quick-bench
     (loop [cs "bücher"
            ascii (transient [])
            unicode (transient [])]
@@ -95,7 +95,7 @@
                    (persistent! unicode))]))))
 
 
-  (uk.axvr.utils/quick-bench (java.net.IDN/toASCII "bücher"))
+  (uk.axvr.debug/quick-bench (java.net.IDN/toASCII "bücher"))
   )
 
 

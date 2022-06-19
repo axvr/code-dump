@@ -58,7 +58,7 @@
 
 
 
-;; (uk.axvr.utils/decompile
+;; (uk.axvr.debug/decompile
 (defn sieve [^long limit]
   (let [q (inc (long (Math/sqrt limit)))
         ^longs sieve (long-array (inc (>> limit 7)))]
@@ -104,16 +104,16 @@
 
 (comment
 
-  (uk.axvr.utils/quick-bench
+  (uk.axvr.debug/quick-bench
     (bit-set 0x12 10))
 
-  (uk.axvr.utils/quick-bench
+  (uk.axvr.debug/quick-bench
     (bset 0x12 10))
 
-  (uk.axvr.utils/quick-bench
+  (uk.axvr.debug/quick-bench
     (bit-test 0x12 0))
 
-  (uk.axvr.utils/quick-bench
+  (uk.axvr.debug/quick-bench
     (btest 0x12 0))
 
   ;; 0101
@@ -127,13 +127,13 @@
   ;; OR  (<< 1 bit)  |  ^    -> 1010
   ;; AND 0101 & 1010 -> 0000 not= (<< 1 bit)
 
-  (uk.axvr.utils/quick-bench
+  (uk.axvr.debug/quick-bench
     (sieve-new/sieve 1000000))
 
-  (uk.axvr.utils/quick-bench
+  (uk.axvr.debug/quick-bench
     (sieve-1-bit/sieve 1000000))
 
-  (uk.axvr.utils/quick-bench
+  (uk.axvr.debug/quick-bench
     (sieve-8-bit/sieve 1000000))
 
   (defmacro bset [slot idx]
