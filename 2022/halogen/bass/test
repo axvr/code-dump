@@ -1,0 +1,10 @@
+#!/usr/bin/env bass
+
+(use (*dir*/halogen.bass))
+
+(defn run-checks [src]
+  (-> src (halogen:checks) vals list->source (each succeeds?)))
+
+(defn main args
+  (for [{:src src} *stdin*]
+    (run-checks src)))
