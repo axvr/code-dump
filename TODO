@@ -1,9 +1,7 @@
-- Bass
-- Clojure
+- CI pipeline to check for and update versions on new releases.
 - SBCL
 - Leiningen
 - SDKMAN!
 - Julia Mono
   - Ligature and non-ligature mode.
 - Inconsolata
-- CI pipeline to check for and update versions on new releases.
