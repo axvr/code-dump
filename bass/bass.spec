@@ -1,6 +1,6 @@
 Name:    bass
 Summary: Bass is a scripting language for running commands and caching the shit out of them
-Version: 0.9.0
+Version: 0.10.0
 Release: 1%{?dist}
 
 License: MIT
