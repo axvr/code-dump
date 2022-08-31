@@ -1,0 +1,6 @@
+#!/bin/sh
+
+curl --silent 'https://clojure.org/releases/tools' \
+    | grep '^<h3' \
+    | sed 's/<h3\s\+id="v\([0-9\.]\+\?\)">.*$/\1/' \
+    | head -n 1
