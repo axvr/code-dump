@@ -1,4 +1,3 @@
-- CI pipeline to check for and update versions on new releases.
 - SBCL
 - Leiningen
 - SDKMAN!
