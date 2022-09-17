@@ -1,0 +1,7 @@
+- https://docs.pagure.org/copr.copr/user_documentation.html#faq
+- https://fedoraproject.org/wiki/Licensing:Main
+- https://github.com/shassard/sbcl/blob/master/sbcl.spec
+- https://fedoramagazine.org/how-rpm-packages-are-made-the-spec-file/
+- http://ftp.rpm.org/max-rpm/s1-rpm-build-creating-spec-file.html
+- http://ftp.rpm.org/max-rpm/s1-rpm-inside-macros.html
+- https://docs.fedoraproject.org/en-US/packaging-guidelines/RPMMacros/
