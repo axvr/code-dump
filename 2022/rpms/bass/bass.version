@@ -1,0 +1,5 @@
+#!/bin/sh
+
+curl -sI 'https://github.com/vito/bass/releases/latest' \
+    | grep '^location: ' \
+    | sed -e 's,^.*/v\([[:digit:]\.]\+\)[[:space:]]*$,\1,'
