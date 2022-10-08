@@ -1,0 +1,28 @@
+(use (git:github/vito/tabs/ref/main/wget.bass))
+
+(defn tools-deps-installer [version]
+  (wget:wget (str "https://download.clojure.org/install/linux-install-" version ".sh")
+             ./tools-deps-install.sh))
+
+(from (linux/debian)
+  ($ apt update)
+  ($ apt install -y curl rlwrap)
+  ($ bash (tools-deps-installer :1.11.1.1149))
+  ($ clojure --version))
+
+;; TODO: test on ClojureCLR.
+
+;; (def nuget-cache (cache-dir ".NET NuGet cache"))
+;; (def dotnet-cache (cache-dir ".NET cache"))
+
+;; (def clojure-clr
+;;   (let [profile (mkfile ./bash_profile "export PATH=\"$PATH:/root/.dotnet/tools\"")]
+;;     (-> ($ dotnet tool install --global Clojure.Main)
+;;         (with-mount nuget-cache /root/.nuget/)
+;;         (with-mount dotnet-cache /root/.dotnet/)
+;;         ;; (with-env {:DOTNET_CLI_TELEMETRY_OPTOUT 1})
+;;         (with-image (linux/mcr.microsoft.com/dotnet/sdk :5.0)))))
+
+;; (defn cljr [src & args]
+;;   (from clojure-clr
+;;     ($ /root/.dotnet/tools/Clojure.Main & $args)))

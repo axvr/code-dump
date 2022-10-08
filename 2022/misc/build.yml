@@ -1,0 +1,20 @@
+image: fedora/latest
+packages:
+  - java-latest-openjdk-headless
+  - tar
+sources:
+  - https://git.sr.ht/~axvr/uk.axvr.dynamock
+environment:
+  clj_version: 1.11.1.1105
+tasks:
+  - setup: |
+      curl -O "https://download.clojure.org/install/linux-install-${clj_version}.sh"
+      chmod +x "linux-install-${clj_version}.sh"
+      sudo bash "linux-install-${clj_version}.sh"
+  - lint: |
+      cd uk.axvr.dynamock
+      clj-kondo () { clojure -Sdeps '{:deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}}' -M -m clj-kondo.main "$@"; }
+      clj-kondo --lint src
+  - test: |
+      cd uk.axvr.dynamock
+      clojure -X:test
