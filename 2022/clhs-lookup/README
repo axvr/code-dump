@@ -5,7 +5,7 @@
 Clojure code to generate a file containing every Common Lisp symbol and its
 relevant page on the Common Lisp Hyperspec.
 
-The generated file is at: https://paste.sr.ht/~axvr/6fd24191e38d2ac006cd5e0107cb1d68cf007bf6
+The generated file is at: https://gist.githubusercontent.com/axvr/fd3ca01cafe32dee67317c6bf6ab5be1/raw/12a10597f8d89a22beb6ccbad7d032cf0b380c8b/symbols.lisp
 
 I've included a script which takes a CL symbol and opens the hyperspec page for
 it in the web browser.  You may need to change the `open-urls` command to
