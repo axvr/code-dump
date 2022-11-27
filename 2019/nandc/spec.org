@@ -1,0 +1,20 @@
+#+TITLE: NANDC language spec design
+
+- S-expressions.
+- Building components/abstraction layers.
+- Explicitly specify (and name) inputs and outputs.
+- Give components names and descriptions (doc strings).
+- Changes to an existing component propagate.
+- Canvas.
+- Components.
+- Components can recursive (e.g. AND with 3+ inputs will recursively AND).
+- NAND + clocks are the only primatives?
+- Import/export components and projects as s-expressions.
+
+
+#+BEGIN_SRC
+
+(defcomp and (& i)
+  (nand ))
+
+#+END_SRC

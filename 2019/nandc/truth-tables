@@ -1,0 +1,92 @@
+| n || 0 | 1 |
+|---++---+---|
+| 0 || 1 | 1 |
+| 1 || 1 | 0 |
+
+
+(n (n) n)
+
+    o
+    |
+  ( n )
+   / \
+( n   n )
+ / \ / \
+a  b c  d
+
+
+
+(n a b c d)
+
+     o
+     |
+     n
+    / \
+   /\ /\
+  a b c d
+
+
+
+(n (n a b) (n a b))
+
+and: ((a b) (a b))
+not: (a a)
+or:  ((a a) (b b))
+nor: (((a a) (b b))
+      ((a a) (b b)))
+xor: ((a (a b))
+      (b (a b)))
+
+not -> (a a) -> b  ; bus syntax
+
+a -> 1 ; let a = 1
+b -> 0 ; let b = 0
+
+
+boolean values: 0 1
+nand operation: (a b)
+mapping: and -> ((a b) (a b))
+clocks: [1000]
+
+
+| a || 0 | 1 |
+|---++---+---|
+| 0 || 0 | 0 |
+| 1 || 0 | 1 |
+
+| x || 0 | 1 |
+|---++---+---|
+| 0 || 1 | 1 |
+| 1 || 0 | 1 |
+
+recursive optimisation
+  - from tree, produce another tree containing hardware optimised schematic (as a pretty graph?)
+
+NEPL: NAND + REPL
+
+release on april first?
+
+world's most minimal hardware description language
+containing only a single piece of syntax
+
+option to recursively optimise itself. produce better N code.
+
+----------
+
+ability to label inputs. this allows the creation of busses.
+
+label outputs?
+
+naming blocks to abstract away?
+
+clocks? [1000]
+
+
+1-bit selector: ((a c) ((c c) b))
+
+
+lisp-style metaprogramming?
+
+compile to byte code and run on VM/simulator?
+
+Learn basic verilog and how HDLs explicitly handle time.

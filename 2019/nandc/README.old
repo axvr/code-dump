@@ -1,0 +1,76 @@
+<!-- METADATA
+title: NAND Compiler (NANDC)
+-->
+
+### Building a simpler HDL (hardware description language).
+
+What distinguishes this project from previous and existing HDLs is that the
+foundations of the language are s-expressions and NAND gates.  This is possible
+because NAND gates are _functionally complete_.
+
+The combination of these 2 things results in an extremely simple, clean and
+minimal language which can be easily manipulated by other programs, as it is
+just a data representation.
+
+There will likely be 2 languages built one which is for internal representation
+only: the NAND trees, and the second is a more Lisp-like language with lots of
+useful features.
+
+The NAND s-expression trees will allow for experimentation with what I call
+"recursive pattern-matching optimisation", where the system recursively travels
+across the tree looking for known inputs and outputs and replacing the
+components with pre-defined more-optimised ones.  This should be efficient and
+simple due the tree only containing NAND gates, so there are significantly less
+possible options.
+
+There will be a second compilation layer which expands each NAND gate into
+their most optimised counter-parts.
+
+## Possible syntax for the NAND s-expression trees
+
+```
+and: ((a b) (a b))
+not: (a a)
+or:  ((a a) (b b))
+nor: (((a a) (b b))
+      ((a a) (b b)))
+xor: ((a (a b))
+      (b (a b)))
+```
+
+---
+
+## Resources
+
+- [Hardware description language | Wikipedia](https://en.wikipedia.org/wiki/Hardware_description_language)
+- [Register-transfer level | Wikipedia](https://en.wikipedia.org/wiki/Register-transfer_level)
+- [Logic simulation | Wikipedia](https://en.wikipedia.org/wiki/Logic_simulation)
+- [Flip-flop (electronics) | Wikipedia](https://en.wikipedia.org/wiki/Flip-flop_%28electronics%29)
+- [What is the difference between hardware description language and assembly language? | Quora](https://www.quora.com/What-is-the-difference-between-hardware-description-language-hdl-and-assembly-language)
+
+### NAND
+
+- [Sheffer stroke (logical NAND) | Wikipedia](https://en.wikipedia.org/wiki/Sheffer_stroke)
+- [NAND logic | Wikipedia](https://en.wikipedia.org/wiki/NAND_logic)
+- [NAND gate | Wikipedia](https://en.wikipedia.org/wiki/NAND_gate)
+
+### S-expressions
+
+- [S-expression | Wikipedia](https://en.wikipedia.org/wiki/S-expression)
+
+### Similar concepts
+
+- [Lisp CPU](http://www.frank-buss.de/lispcpu/)
+  - [Hacker News discussion (2014)](https://news.ycombinator.com/item?id=7938856)
+
+### Optimisations
+
+- [Does using only NAND/NOR gates increase circuit delay? | Stack Exchange](https://electronics.stackexchange.com/questions/30733/does-using-only-nand-nor-gates-increase-circuit-delay#30734)
+
+### Timing
+
+- [Can you explain in details why we need a processor clock, what it does, what happens if we remove it? | Quora](https://www.quora.com/Can-you-explain-in-details-why-we-need-a-processor-clock-what-it-does-what-happens-if-we-remove-it)
+
+### Transistor logic
+
+- [Transistor Logic NOT Gate - Inverter -- Peter Vis](https://www.petervis.com/Education/logic-gates/transistor-logic-not-gate-inverter.html)
