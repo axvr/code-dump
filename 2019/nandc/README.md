@@ -23,8 +23,8 @@ Quickly the idea morphed from a hypothetical joke to a still hypothetical, but s
 
 Since 2020, the idea sat at the back of my mind, gradually evolving as I learnt more about computing.  (Lisp, the Xerox Alto, Smalltalk, the Burroughs B5000 and much more.)
 
-As of 2022-10-24, the implementation process has finally begun.  Now called [Machina][], it is intended to become a highly interactive, object-oriented (in the Smalltalk sense), Lisp-like HDL and eventually gain that visual IDE.
+As of 2022-10-24, the implementation process began.  Originally Machina, now [Gait][], it is intended to become a highly interactive, object-oriented (in the Smalltalk sense), Lisp-like HDL and eventually gain that visual IDE.
 
-[Machina]: https://github.com/axvr/machina
+[Gait]: https://github.com/axvr/gait
 
 _Public domain.  No rights reserved._
