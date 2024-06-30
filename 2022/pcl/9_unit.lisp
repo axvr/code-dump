@@ -81,6 +81,10 @@
   `(combine-results
      ,@(loop for f in forms collect `(report-result ,f ',f))))
 
+(defmacro check (&body forms)
+  `(combine-results
+     ,@(mapcar (lambda (f) `(report-result ,f ',f)) forms)))
+
 (defun test-+ ()
   (check
     (= (+ 1 2) 3)
@@ -88,3 +92,72 @@
     (= (+ -1 -3) -4)))
 
 (test-+)
+
+
+(defun test-* ()
+  (check
+    (= (* 2 2) 4)
+    (= (* 3 5) 15)))
+
+(defun test-arithmetic ()
+  (combine-results
+    (test-+)
+    (test-*)))
+
+
+(defvar *test-name* nil)
+
+(defun report-result (result form)
+  (format t "~:[FAIL~;pass~] ... ~a: ~a~%" result *test-name* form)
+  result)
+
+(defun test-+ ()
+  (let ((*test-name* 'test-+))
+    (check
+      (= (+ 1 2) 3)
+      (= (+ 1 2 3) 6)
+      (= (+ -1 -3) -4))))
+
+(defun test-* ()
+  (let ((*test-name* 'test-*))
+    (check
+      (= (* 2 2) 4)
+      (= (* 3 5) 15))))
+
+(defun test-arithmetic ()
+  (combine-results
+    (test-+)
+    (test-*)))
+
+(test-arithmetic)
+
+
+(defmacro deftest (name params &body body)
+  `(defun ,name ,params
+     (let ((*test-name* ',name))
+       ,@body)))
+
+(deftest test-+ ()
+  (check
+    (= (+ 1 2) 3)
+    (= (+ 1 2 3) 6)
+    (= (+ -1 -3) -4)))
+
+(deftest test-* ()
+  (check
+    (= (* 2 2) 4)
+    (= (* 3 5) 15)))
+
+
+(defmacro deftest (name params &body body)
+  `(defun ,name ,params
+     (let ((*test-name* (append *test-name* (list ',name))))
+       ,@body)))
+
+
+(deftest test-arithmetic ()
+  (combine-results
+    (test-+)
+    (test-*)))
+
+(test-arithmetic)
