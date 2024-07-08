@@ -2,7 +2,7 @@
 
 _30th November 2019 – 10th May 2020_ (intermittently)
 
-A collection of very early notes, code and other exploratory material for what would later become [Machina][].
+A collection of very early notes, code and other exploratory material for what would later become [Gait][].
 
 "NANDC" (pronounced "Nancy"; short for "NAND Compiler") was envisioned as an esoteric logic simulation language, a technical joke, where the only construct was NAND, represented as brackets, that would be really difficult to read and write.
 
