@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Clean temporary files.
+
+set -ex
+
+rm -rf aux out

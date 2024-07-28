@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Build LaTeX document.
+
+set -ex
+
+do/check
+
+latexmk -interaction=nonstopmode -Werror -lualatex
