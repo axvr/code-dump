@@ -91,3 +91,46 @@
 ;;   4: e
 ;;   3: a i / c g
 ;;   2: b d f h
+
+;; TODO: generic n-dimensional magic square solver?
+
+
+;; Wordle solver.
+
+(require '[clojure.string :as str])
+(import '(java.util Collection))
+
+;; TODO: create a version of `amb-let` that can return all solutions.
+
+(let [dict (-> "/usr/share/dict/words" slurp str/lower-case (str/split #"\n") set)]
+  (amb-let [?word dict]
+    (amb-assert (= 5 (count ?word)))
+    (let [[?c1 ?c2 ?c3 ?c4 ?c5 :as ?chars] (seq ?word)]
+      ;; Encode known information here.
+
+      ;; Invalid words:
+      (amb-assert (not (#{"morga" "grush" "calli" "tould" "niuan"
+                          "inrub" "punti" "arioi" "umiri" "baioc"}
+                        ?word)))
+
+      ;; Yellow and green chars:
+      (amb-assert (Collection/.containsAll ?chars #{\e \s \i}))
+
+      ;; Grey chars:
+      (amb-assert (not (some #{\a \r \t \h \l \m \p \o \n \c} ?chars)))
+
+      ;; Green chars:
+      (amb-assert (and (= ?c1 \s)
+                       (= ?c2 \i)
+                       (= ?c3)
+                       (= ?c4)
+                       (= ?c5 \e)))
+
+      ;; Yellow char locations:
+      (amb-assert (and (not (#{\e} ?c1))
+                       (not (#{\e} ?c2))
+                       (not (#{\s} ?c3))
+                       (not (#{\e} ?c4))
+                       (not (#{} ?c5)))))
+    ?word))
+;; => "siege"
