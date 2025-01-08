@@ -3,14 +3,25 @@
 (def +amb-fail-err+
   (AssertionError. "Amb: fail"))
 
+(def +amb-cut-err+
+  (InterruptedException. "Amb: cut"))
+
 (defmacro fail []
   `(throw +amb-fail-err+))
+
+(defmacro cut []
+  `(throw +amb-cut-err+))
 
 (defmacro amb-assert
   "A much faster version of Clojure's `assert` macro which provides significant
   performance wins for complex solves."
   [condition]
   `(when-not ~condition (fail)))
+
+;; TODO: set a mark in `amb-let?`, or auto-mark and `(cut ?a)`
+(defmacro with-mark [& body]
+  `(try ~@body
+        (catch InterruptedException _# (fail))))
 
 (defmacro amb-let
   "Simple nondeterminism using macros and try/catch as Clojure lacks
@@ -24,8 +35,8 @@
                           `(amb-let ~binds ~@body)
                           `(do ~@body)))
                     (first ambs#))
-                   (catch AssertionError _# ::failed))]
-        (if (identical? res# ::failed)
+                   (catch AssertionError _# ::fail))]
+        (if (identical? res# ::fail)
           (recur (next ambs#))
           res#)))
     ~ambs))
@@ -134,3 +145,38 @@
                        (not (#{} ?c5)))))
     ?word))
 ;; => "siege"
+
+
+;; On Lisp 22.6 example.
+
+(defn parlor-trick [sum]
+  (amb-let [?n1 [0 1 2 3 4 5]
+            ?n2 [0 1 2 3 4 5]]
+    (if (= (+ ?n1 ?n2) sum)
+      (println "The sum of" ?n1 ?n2)
+      (fail))))
+
+(parlor-trick 7)
+
+
+;; On Lisp 22.10 example mark/cut (pruning).
+
+(def coin?
+  #{[:la 1 2]
+    [:ny 1 1]
+    [:bos 2 2]})
+
+(defn find-boxes []
+  (amb-let [?city [:la :ny :bos]]
+    (with-mark
+      (newline)
+      (amb-let [?store [1 2]
+                ?box   [1 2]]
+        (let [triple [?city ?store ?box]]
+          (print triple)
+          (when (coin? triple)
+            (print "C")
+            (cut))
+          (fail))))))
+
+(find-boxes)
