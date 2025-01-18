@@ -31,9 +31,9 @@
       (when (empty? ambs#) (fail))
       (let [res# (try
                    ((fn [~amb]
-                       ~(if (seq binds)
-                          `(amb-let ~binds ~@body)
-                          `(do ~@body)))
+                      ~(if (seq binds)
+                         `(amb-let ~binds ~@body)
+                         `(do ~@body)))
                     (first ambs#))
                    (catch AssertionError _# ::fail))]
         (if (identical? res# ::fail)
@@ -48,16 +48,16 @@
 
 (amb-let [?a #{1 2 3}
           ?b #{3 4 5}]
- (amb-assert (= 6 (+ ?a ?b)))
- [?a ?b])
+  (amb-assert (= 6 (+ ?a ?b)))
+  [?a ?b])
 ;; => [1 5]
 
 (amb-let [?a #{1 2 3}
           ?b #{3 4 5}]
- (amb-assert (even? ?a))
- (amb-assert (even? ?b))
- (amb-assert (= 6 (+ ?a ?b)))
- [?a ?b])
+  (amb-assert (even? ?a))
+  (amb-assert (even? ?b))
+  (amb-assert (= 6 (+ ?a ?b)))
+  [?a ?b])
 ;; => [2 4]
 
 
@@ -70,10 +70,10 @@
           ?w2 #{"frog" "elephant" "thing"}
           ?w3 #{"walked" "treaded" "grows"}
           ?w4 #{"slowly" "quickly"}]
- (amb-assert (and (str-adjacent? ?w1 ?w2)
-                  (str-adjacent? ?w2 ?w3)
-                  (str-adjacent? ?w3 ?w4)))
- [?w1 ?w2 ?w3 ?w4])
+  (amb-assert (and (str-adjacent? ?w1 ?w2)
+                   (str-adjacent? ?w2 ?w3)
+                   (str-adjacent? ?w3 ?w4)))
+  [?w1 ?w2 ?w3 ?w4])
 ;; => ["that" "thing" "grows" "slowly"]
 
 
@@ -84,15 +84,15 @@
    ;; The order of these impacts the solve time.  Least significant cell to
    ;; most significant = fastest.
    (amb-let [?h r, ?f r, ?d r, ?b r, ?g r, ?c r, ?i r, ?a r, ?e r]
-    (amb-assert (and (distinct? ?a ?b ?c ?d ?e ?f ?g ?h ?i)
-                     (= (+ ?a ?b ?c)
-                        (+ ?a ?d ?g)
-                        (+ ?a ?e ?i)
-                        (+ ?b ?e ?h)
-                        (+ ?c ?e ?g)
-                        (+ ?c ?f ?i)
-                        (+ ?d ?e ?f)
-                        (+ ?g ?h ?i))))
+     (amb-assert (and (distinct? ?a ?b ?c ?d ?e ?f ?g ?h ?i)
+                      (= (+ ?a ?b ?c)
+                         (+ ?a ?d ?g)
+                         (+ ?a ?e ?i)
+                         (+ ?b ?e ?h)
+                         (+ ?c ?e ?g)
+                         (+ ?c ?f ?i)
+                         (+ ?d ?e ?f)
+                         (+ ?g ?h ?i))))
      [[?a ?b ?c]
       [?d ?e ?f]
       [?g ?h ?i]])))
