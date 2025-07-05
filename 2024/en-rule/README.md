@@ -2,6 +2,8 @@
 
 *2024-01-02 – 2024-03-06*
 
+_Public domain.  No rights reserved._
+
 Experiments in extending the Clojure rules engine [O'Doyle Rules](https://github.com/oakes/odoyle-rules)
 with some missing [Clara](https://www.clara-rules.org/) features
 (i.e. inspection and doc-strings) and other oddities.
