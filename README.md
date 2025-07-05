@@ -1,4 +1,4 @@
-# Code Dump
+# Code archive
 
 An archive of random code, programming notes and project assets I have created,
 ranging from experiments to fully functioning programs.
