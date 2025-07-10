@@ -11,7 +11,7 @@ streamlined the set up of a C# development environment in Vim for Unix-like
 OSs.  Shortly after that, I created a sister script written in PowerShell to
 automate the installation on Microsoft Windows.
 
-This is an old version of the script; various bug fixes and improvemnts have
+This is an old version of the script; various bug fixes and improvements have
 been made to this script in the [upstream O#-Vim repo][O# installers].
 
 (**NOTE:** only this copy of the script is in public domain.  The version in
